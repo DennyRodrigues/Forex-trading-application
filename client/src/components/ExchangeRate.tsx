@@ -3,7 +3,6 @@ import WebSocketContext  from "./context/WebSocketContext";
 
 export const ExchangeRate = () => {
   const exchangeRate = useContext(WebSocketContext);
-  console.log(exchangeRate);
   if (!(exchangeRate === 0)) {
     return (
       <p>
