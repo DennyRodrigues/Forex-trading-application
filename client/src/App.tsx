@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { ExchangeRate } from "./components/context/ExchangeRate";
-import { WebSocketProvider } from "./components/context/WebSocketContext";
+import { ExchangeRate } from "./components/ExchangeRate";
+import { WebSocketProvider } from "./components/context/WebSocketProvider";
 
 function App() {
   return (
