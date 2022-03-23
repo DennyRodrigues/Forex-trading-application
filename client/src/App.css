@@ -1,12 +1,29 @@
 .container{
+  padding: 64px 0px;
+  font-size: 32px;
+
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+
 }
 
+/* BUTTONS */
 span{
   color: red;
   font-weight: 600;
   
+}
+
+/* Trade */
+.tradeContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:20px;
+}
+.Calculation{
+  min-width: 140px;
+  padding: 10px 20px;
 }
