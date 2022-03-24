@@ -1,10 +1,10 @@
-const tradeController = require('../controllers/tradeController')
-import * as express from "express";
+import express from "express";
+import protect from "../middleware/authMiddleware";
+const tradeController = require("../controllers/tradeController");
 
-const router = express.Router()
+const router = express.Router();
 
-router.route('/')
-.post(tradeController.trade)
-
+router.post("/", protect, tradeController.postTrade);
+router.get("/", protect);
 
 module.exports = router;

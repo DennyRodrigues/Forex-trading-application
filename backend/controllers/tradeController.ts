@@ -1,30 +1,41 @@
 import getExchangeRate from "../helpers/getExchangeRate"
+import asyncHandler from "express-async-handler";
+import User = require("../models/userModel");
+import { Request, Response } from "express"
 
-exports.trade = (req:any, res:any) =>{
+let ObjectID = require("mongodb").ObjectID;
+exports.postTrade = asyncHandler(async (req: any, res: Response) => {
   const entryValue = Number(req.body.value);
-
-  if (!isNaN(entryValue)){
+  const UserId = req.user.id;
+  console.log(UserId);
+  if (!isNaN(entryValue)) {
     const ExchangeRate = getExchangeRate();
-    ExchangeRate.then((response: any) => { 
+    ExchangeRate.then(async (response: any) => {
+      const user = await User.findById(UserId);
+      user.trades.push( {
+              _id: new ObjectID(),
+              date: response.date,
+              exchangeSymbol: "GBPUSD",
+              exchangeRate: response.rate,
+              entryAmount: entryValue,
+              exchangeAmout: entryValue * response.rate,
+      })
+      user.save();
       res.status(200).json({
-      status:'sucess',
-      results: {
-        date: req.requestTime,
-        exchangeSymbol: 'GBPUSD',
-        exchangeRate:response,
-        value: (entryValue * response),
-      }
-    })})
-
-  }
-  else{
+        status: "success",
+        results: {
+          date: response.date,
+          exchangeSymbol: "GBPUSD",
+          exchangeRate: response.rate,
+          entryAmount: entryValue,
+          exchangeAmout: entryValue * response.rate,
+        },
+      });
+    });
+  } else {
     res.status(400).json({
       status: "fail",
       message: "request body needs a valid value property",
-
     });
   }
-
-  
-
-}
+});

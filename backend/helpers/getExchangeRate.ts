@@ -1,15 +1,19 @@
 import { io } from "socket.io-client";
 
+const port = process.env.PORT_2;
+const socketUrl = `http://localhost:${port}/`;
 
-const socketUrl = "http://localhost:5000/";
-
-const getExchangeRate = () => {
-  return (new Promise((resolve) => {
+async function getExchangeRate(){
+  return new Promise((resolve) => {
     const socket = io(socketUrl);
     socket.on("message", (data) => {
-      resolve(Number(data))
+      resolve(
+        {
+          rate: Number(data),
+          date: new Date().toISOString(),
+        });
     });
-  }))
-}
+  });
+};
 
 export = getExchangeRate;

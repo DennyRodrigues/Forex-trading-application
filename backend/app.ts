@@ -1,8 +1,9 @@
 const express = require('express')
 var cors = require("cors");
 const tradeRouter = require('./routes/tradeRouter')
+const userRouter = require("./routes/userRouter");
 const app = express();
-const errorHandler = require("./middleware/errorHandler");
+const errorMiddleware = require("./middleware/errorMiddleware");
 
 
 // Middlewares to change request 
@@ -16,9 +17,9 @@ app.use(express.json());
 // ROUTES
 
 // Make trade, receive value back
-app.use('/api/v1/trade', tradeRouter);
+app.use('/api/v1/trades', tradeRouter);
+app.use('/api/v1/users', userRouter)
 
-
-app.use(errorHandler);
+app.use(errorMiddleware);
 
 export default app;
