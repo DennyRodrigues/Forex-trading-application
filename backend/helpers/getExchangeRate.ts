@@ -16,4 +16,4 @@ async function getExchangeRate(){
   });
 };
 
-export = getExchangeRate;
+export { getExchangeRate };

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction,  } from "express";
 
-const errorHandler = (
+const errorMiddleware = (
   err: any,
   req: Request,
   res: Response,
@@ -10,10 +10,10 @@ const errorHandler = (
 
   res.status(statusCode);
   res.json({
-    status: 'fail',
+    status: "fail",
     message: err.message,
     stack: err.stack,
   });
 };
 
-export = errorHandler;
+export { errorMiddleware };

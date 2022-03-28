@@ -1,6 +1,6 @@
-const jwt = require("jsonwebtoken");
+import * as jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
-import User = require("../models/userModel");
+import User from "../database/models/userModel";
 import {Response, NextFunction } from "express";
 
 const protect = asyncHandler(
@@ -14,7 +14,7 @@ const protect = asyncHandler(
         token = req.headers.authorization.split(" ")[1];
 
         // Verify token
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded:any = jwt.verify(token, process.env.JWT_SECRET!);
 
         // Get user from the token and add user information to request 
         req.user = await User.findById(decoded.id).select("id");
@@ -35,4 +35,4 @@ const protect = asyncHandler(
 
 );
 
-export = protect;
+export { protect };

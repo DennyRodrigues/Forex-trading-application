@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
-import User = require("../models/userModel");
+import User from "../database/models/userModel";
 import {generateToken} from "../helpers/generateToken";
-const bcrypt = require("bcrypt");
+import bcrypt from "bcrypt";
 
 // Register a user
 exports.registerUser = asyncHandler(async (req: Request, res: Response) => {
@@ -42,14 +42,18 @@ exports.registerUser = asyncHandler(async (req: Request, res: Response) => {
 
 });
 
-// Authenticate a user
+// Login a user, returns a token
 exports.loginUser = asyncHandler(async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  console.log(req.body, email, password);
 
   const user = await User.findOne({ email })
+
   
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.status(201).json({
+    res.status(200).json({
       status: "success",
       result: {
         _id: user.id,
@@ -70,7 +74,7 @@ exports.loginUser = asyncHandler(async (req: Request, res: Response) => {
 
 // Get user data
 exports.getUserData = asyncHandler(async (req: any, res: Response) => {
-  // The user ID in the request came from the authMiddleware
+  // The user ID to be finded  came from the authMiddleware
   const { id, name, email, wallet } = await User.findById(req.user.id);
 
   res.status(200).json({

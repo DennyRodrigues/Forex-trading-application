@@ -16,10 +16,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please add a password"],
     },
-    wallet: {
+    GBP: {
       type: Number,
-      required: [true, "Please add a wallet value"],
+      required: [true, "Please add a GBP value"],
       default: 10000,
+    },
+    USD: {
+      type: Number,
+      required: [true, "Please add a USD value"],
+      default: 0,
     },
     trades: {
       type: Array,
@@ -32,4 +37,4 @@ const userSchema = new mongoose.Schema(
   }
 );
   
-export = mongoose.model("User", userSchema);
+export default mongoose.model("User", userSchema);

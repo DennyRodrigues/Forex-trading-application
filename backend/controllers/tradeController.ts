@@ -1,6 +1,6 @@
-import getExchangeRate from "../helpers/getExchangeRate"
+import { getExchangeRate } from "../helpers/getExchangeRate"
 import asyncHandler from "express-async-handler";
-import User = require("../models/userModel");
+import User from "../database/models/userModel";
 import { Request, Response } from "express"
 
 let ObjectID = require("mongodb").ObjectID;
@@ -39,3 +39,14 @@ exports.postTrade = asyncHandler(async (req: any, res: Response) => {
     });
   }
 });
+
+exports.getTrade = asyncHandler(async (req: any, res: Response) => {
+  const { trades } = await User.findById(req.user.id);
+
+  res.status(200).json({
+    status: "success",
+    result: {
+      trades
+    },
+  });
+})
