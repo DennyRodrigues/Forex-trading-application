@@ -37,3 +37,30 @@ span{
 .list-group-item{
   background-color: #bbb;
 }
+
+
+/* Navigation */
+/* UserInfo */
+.user-info{
+  font-size: 20px;
+
+  margin-left: auto;
+  margin-right: 160px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-info__name{
+  margin-left: 10px;
+  font-size: 30px;
+  
+}
+.user-info__text{
+  margin-right: 40px;
+}
+.user-info__wallet{
+  margin-left: 10px;
+   font-size: 40px;
+   color: green;
+}

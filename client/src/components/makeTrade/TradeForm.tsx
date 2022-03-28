@@ -1,18 +1,18 @@
-import 'bootstrap/dist/css/bootstrap.css';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import "bootstrap/dist/css/bootstrap.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import { useContext } from "react";
 import { AuthContext } from "../authentication/AuthContext";
 
 export const TradeForm = (props: any) => {
-  let token = useContext(AuthContext)?.token;
+  const token = useContext(AuthContext)?.token;
+  const updateUser = useContext(AuthContext)?.updateUser;
 
   const entryAmount = props.entryAmount;
   // The form will submit using fetch
-  function submitForm(e:any) {
-    e.preventDefault()
+  function submitForm(e: any) {
+    e.preventDefault();
 
-    
     fetch(`http://localhost:4100/api/v1/trades`, {
       method: "post",
       headers: {
@@ -24,9 +24,13 @@ export const TradeForm = (props: any) => {
       }),
     })
       .then((res: any) => res.json())
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (updateUser) {
+          updateUser();
+        }
+        console.log(res);
+      })
       .catch((e) => console.log(e));
-
   }
   return (
     <Form onSubmit={submitForm}>

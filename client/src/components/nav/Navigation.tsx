@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../authentication/AuthContext";
+import { UserInfo } from "../user/UserInfo";
 
 export const Navigation = (props: any) => {
   const onLogout = useContext(AuthContext)?.onLogout;
- const token = useContext(AuthContext)?.token;
+  const token = useContext(AuthContext)?.token;
 
   if (token) {
     return (
@@ -21,14 +22,16 @@ export const Navigation = (props: any) => {
         </li>
         <li className="nav-item">
           {onLogout && (
-            <button className="btn nav-text" onClick={() => onLogout()}> LogOff</button>
+            <button className="btn nav-text" onClick={() => onLogout()}>
+              {" "}
+              LogOff
+            </button>
           )}
         </li>
-        :
+        <UserInfo />
       </ul>
     );
-  }
-  else {
+  } else {
     return (
       <ul className="nav">
         <li className="nav-item">
@@ -44,5 +47,4 @@ export const Navigation = (props: any) => {
       </ul>
     );
   }
-
 };

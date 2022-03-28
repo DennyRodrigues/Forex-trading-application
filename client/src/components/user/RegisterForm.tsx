@@ -2,11 +2,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export const RegisterForm = (props: any) => {
+export const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   
   // The form will submit using fetch
   function submitFormHandler(e: any) {
@@ -21,16 +23,14 @@ export const RegisterForm = (props: any) => {
         email: email,
         password: password
       }),
-    }).then((res: any) => {
-      console.log(res.status)
-      return res.json()
-  })
+    })
       .then((res) => {
         if (res.status === 201) {
           // Reset input fields on form
           setName("");
           setEmail("");
           setPassword("");
+          navigate('/login')
         }
         else {
 

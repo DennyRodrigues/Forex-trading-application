@@ -24,17 +24,14 @@ export const LoginForm = (props: any) => {
       }),
     })
       .then((res: any) => {
-          return res.json();
-
+        return res.json();
       })
       .then((res) => {
-        console.log(res)
+        console.log(res);
         if (res.status === "success") {
-
-          // Add token to authContext
+          // Add token to AuthContext
           if (onLogin) {
-            console.log(res.result.token);
-            onLogin(res.result.token);
+            onLogin(res.result);
           }
         } else {
         }
@@ -66,5 +63,5 @@ export const LoginForm = (props: any) => {
         </Button>
       </Form.Group>
     </Form>
-  )
+  );
 };

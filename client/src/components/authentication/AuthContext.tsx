@@ -1,10 +1,15 @@
 import { createContext } from "react";
 
 
-interface value{
-  token:string | null,
-  onLogin:Function,
-  onLogout:Function,
+interface value {
+  user:null|{
+    name: string|null;
+    wallet: number|null;
+  },
+  token: string | null;
+  updateUser: Function;
+  onLogin: Function;
+  onLogout: Function;
 };
 
-export const AuthContext = createContext<value| null>(null);
+export const AuthContext = createContext<value | null>(null);
