@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 
-export const UserForm = (props: any) => {
+export const RegisterForm = (props: any) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,7 +46,7 @@ export const UserForm = (props: any) => {
         <Form.Control
           required
           type="text"
-          placeholder="Exchange amout"
+          placeholder="Name"
           name="value"
           onChange={(e) => setName(e.target.value)}
           value={name}
@@ -55,7 +55,7 @@ export const UserForm = (props: any) => {
         <Form.Control
           required
           type="email"
-          placeholder="Exchange amout"
+          placeholder="Email"
           name="value"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
@@ -63,7 +63,7 @@ export const UserForm = (props: any) => {
         <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
-          placeholder="Exchange amout"
+          placeholder="Passoword"
           name="value"
           onChange={(e) => setPassword(e.target.value)}
           value={password}

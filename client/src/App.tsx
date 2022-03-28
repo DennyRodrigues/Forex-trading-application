@@ -1,20 +1,28 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { ExchangeRate } from "./components/exchangeRate/ExchangeRate";
-import { WebSocketProvider } from "./components/context/WebSocketProvider";
-import { Trade } from "./components/trade/Trade";
-import {UserForm} from "./components/user/UserForm"
- 
+import { BrowserRouter,
+  Routes, Route } from "react-router-dom";
+import {LoginPage} from "./components/routes/LoginPage";
+import { Home } from "./components/routes/HomePage";
+import { RegisterPage } from "./components/routes/RegisterPage";
+import { AuthProvider } from "./components/authentication/AuthProvider";
+import { Navigation } from "./components/nav/Navigation";
+import { PastTradesPage } from "./components/routes/PastTradesPage";
+
 function App() {
   return (
-    <WebSocketProvider>
-      <div className="container">
-        <UserForm/>
-        <ExchangeRate />
-        <Trade/>
-      </div>
-    </WebSocketProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <Navigation />
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/past" element={<PastTradesPage />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

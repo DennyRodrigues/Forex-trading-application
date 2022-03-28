@@ -1,7 +1,6 @@
-import { useState } from "react"
-import { useRef } from "react";
+
 import { useContext } from "react";
-import WebSocketContext from "../context/WebSocketContext";
+import WebSocketContext from "../socketcontext/WebSocketContext";
 
 export const TradeCalculation = (props: any) => {
   const exchangeRate = useContext(WebSocketContext);

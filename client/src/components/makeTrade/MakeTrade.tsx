@@ -1,8 +1,8 @@
 import { TradeCalculation } from "./TradeCalculation";
 import { TradeForm } from "./TradeForm"
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
-export const Trade = () => {
+export const MakeTrade = () => {
 
   const [entryAmount, setEntryAmount] = useState(0);
   function changeHandler(e:any) {
