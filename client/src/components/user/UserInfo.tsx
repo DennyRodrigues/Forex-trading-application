@@ -4,6 +4,7 @@ import { AuthContext } from "../authentication/AuthContext";
 export const UserInfo = () => {
   const user = useContext(AuthContext)?.user;
 
+
   return (
     <div className="user-info">
       <p className="user-info__text">
@@ -12,8 +13,15 @@ export const UserInfo = () => {
       </p>
       <p className="user-info__text">
         wallet:
-        <span className="user-info__wallet">{user?.wallet}</span>
-        GBP
+        {user?.wallet ? Object.entries(user?.wallet).map(([key, value]) => {
+          return (
+            <span className={`user-info__wallet user-info__wallet--${key}`
+        } key={key}>
+              {value.toFixed(2).toString()}
+              {key}
+            </span>
+          );   
+          }):''}
       </p>
     </div>
   );

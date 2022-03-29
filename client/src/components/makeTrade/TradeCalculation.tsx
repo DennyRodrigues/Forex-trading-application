@@ -12,7 +12,7 @@ export const TradeCalculation = (props: any) => {
   if (exitSymbol === "USD") {
     calculation = Number((entryAmount * exchangeRate).toFixed(2));
   }
-  if (exitSymbol === "GPB") {
+  if (exitSymbol === "GBP") {
     calculation = Number((entryAmount / exchangeRate).toFixed(2));
   }
     

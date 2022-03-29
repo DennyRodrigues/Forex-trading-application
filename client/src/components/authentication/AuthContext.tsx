@@ -4,7 +4,10 @@ import { createContext } from "react";
 interface value {
   user:null|{
     name: string|null;
-    wallet: number|null;
+    wallet: {
+      USD: number,
+      GBP:number
+    }|null;
   },
   token: string | null;
   updateUser: Function;

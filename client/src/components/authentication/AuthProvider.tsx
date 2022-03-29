@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const AuthProvider = (props: any) => {
   const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<{ name: string; wallet: number } | null>(
+  const [user, setUser] = useState<{ name: string; wallet: {USD:number, GBP:number} } | null>(
     null
   );
   const navigate = useNavigate();
@@ -12,10 +12,13 @@ export const AuthProvider = (props: any) => {
   const handleLogin = (response: {
     name: string;
     token: string;
-    wallet: number;
+    wallet: {
+      USD: number,
+      GBP:number,
+    };
   }) => {
     setToken(response.token);
-    setUser({ name: response.name, wallet: response.wallet });
+    setUser({ name: response.name, wallet: response.wallet});
     navigate("/", { replace: true });
   };
 

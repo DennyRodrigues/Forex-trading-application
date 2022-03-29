@@ -22,6 +22,7 @@ export const PastTrades = () => {
 
   if (trades) {
     if (trades?.length > 0) {
+     
       return (
         <div className="past-trades-container">
           {trades.map((trade: any, index) => {
@@ -33,21 +34,30 @@ export const PastTrades = () => {
               minute: "numeric",
               second: "numeric",
             });
+             console.log(trade);
             return (
               <div key={index} className="past-trade mb-3">
                 <ul className="list-group">
-                  <li className="list-group-item">Date: {date}</li>
                   <li className="list-group-item">
-                    Symbol: {trade.exchangeSymbol}
+                    Date: <span>{date}</span>
                   </li>
                   <li className="list-group-item">
-                    Exchange Rate: {trade.exchangeRate}
+                    Rate:
+                    <span>{trade.exchangeRate}</span>
                   </li>
                   <li className="list-group-item">
-                    Entry Amount: {trade.entryAmount}
+                    Entry Amount:
+                    <span>
+                      {Number(trade.entryAmount).toFixed(2)}
+                      {trade.entrySymbol}
+                    </span>
                   </li>
                   <li className="list-group-item">
-                    Exit Amount: {trade.exchangeAmout.toFixed(2)}
+                    Exchange Received:
+                    <span>
+                      {Number(trade.exitAmount).toFixed(2)}
+                      {trade.exitSymbol}
+                    </span>
                   </li>
                 </ul>
               </div>

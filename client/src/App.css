@@ -40,6 +40,11 @@ span{
 .list-group-item{
   background-color: #bbb;
 }
+.list-group-item span{
+  margin-left: 20px;
+  font-weight: 600;
+  color: black;
+}
 
 
 /* Navigation */
@@ -65,5 +70,11 @@ span{
 .user-info__wallet{
   margin-left: 10px;
    font-size: 40px;
-   color: green;
+   
+}
+.user-info__wallet--USD{
+  color: green;
+}
+.user-info__wallet--GBP{
+  color: red;
 }

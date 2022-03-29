@@ -11,7 +11,16 @@ export const TradeForm = (props: any) => {
 
   const entrySymbol = props.entrySymbol;
   const exitSymbol = props.exitSymbol;
-  const exchangeRate = useContext(WebSocketContext);
+  const webSocketRate = useContext(WebSocketContext);
+
+  // It's necessary to invert the exchange rate depending if the user wants to exchange USD -> GBP or GBP ->USD
+  let exchangeRate:number;
+  if (entrySymbol === "USD") {
+    exchangeRate = 1/webSocketRate;
+  }
+  if (entrySymbol === "GBP") {
+    exchangeRate = webSocketRate;
+  }
 
   const entryAmount = props.entryAmount;
   // The form will submit using fetch
