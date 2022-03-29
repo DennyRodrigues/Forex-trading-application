@@ -3,10 +3,15 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useContext } from "react";
 import { AuthContext } from "../authentication/AuthContext";
+import WebSocketContext from "../socketcontext/WebSocketContext";
 
 export const TradeForm = (props: any) => {
   const token = useContext(AuthContext)?.token;
   const updateUser = useContext(AuthContext)?.updateUser;
+
+  const entrySymbol = props.entrySymbol;
+  const exitSymbol = props.exitSymbol;
+  const exchangeRate = useContext(WebSocketContext);
 
   const entryAmount = props.entryAmount;
   // The form will submit using fetch
@@ -20,7 +25,11 @@ export const TradeForm = (props: any) => {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        value: entryAmount,
+        date: new Date(),
+        entrySymbol:entrySymbol,
+        exitSymbol: exitSymbol,
+        exchangeRate: exchangeRate,
+        value: entryAmount
       }),
     })
       .then((res: any) => res.json())
@@ -35,7 +44,9 @@ export const TradeForm = (props: any) => {
   return (
     <Form onSubmit={submitForm}>
       <Form.Group>
-        <Form.Label>Pound sterling(GBP) to US Dollar(USD):</Form.Label>
+        <Form.Label>
+          {entrySymbol} to {exitSymbol}
+        </Form.Label>
         <Form.Control
           type="number"
           placeholder="Exchange amout"

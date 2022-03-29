@@ -17,11 +17,14 @@ span{
 }
 
 /* Trade */
+
 .tradeContainer{
   display: flex;
   justify-content: center;
   align-items: center;
   gap:20px;
+
+  margin-bottom: 72px;
 }
 .Calculation{
   min-width: 140px;

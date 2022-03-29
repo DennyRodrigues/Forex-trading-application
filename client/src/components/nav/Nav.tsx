@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../authentication/AuthContext";
 import { UserInfo } from "../user/UserInfo";
 
-export const Navigation = (props: any) => {
+export const Nav = (props: any) => {
   const onLogout = useContext(AuthContext)?.onLogout;
   const token = useContext(AuthContext)?.token;
 

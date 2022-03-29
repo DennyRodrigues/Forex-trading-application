@@ -7,14 +7,14 @@ import {LoginPage} from "./components/routes/LoginPage";
 import { Home } from "./components/routes/HomePage";
 import { RegisterPage } from "./components/routes/RegisterPage";
 import { AuthProvider } from "./components/authentication/AuthProvider";
-import { Navigation } from "./components/nav/Navigation";
+import { Nav } from "./components/nav/Nav";
 import { PastTradesPage } from "./components/routes/PastTradesPage";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <Navigation />
+        <Nav />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
