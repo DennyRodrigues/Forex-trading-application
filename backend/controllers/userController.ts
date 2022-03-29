@@ -3,6 +3,8 @@ import asyncHandler from "express-async-handler";
 import User from "../database/models/userModel";
 import {generateToken} from "../helpers/generateToken";
 import bcrypt from "bcrypt";
+import {RequestWithUser} from "../../types/custom.request"
+
 
 // Register a user
 exports.registerUser = asyncHandler(async (req: Request, res: Response) => {
@@ -32,7 +34,10 @@ exports.registerUser = asyncHandler(async (req: Request, res: Response) => {
     res.status(201).json({
       _id: user.id,
       email: email,
-      wallet: 10000,
+      wallet: {
+        USD: 5000,
+        GBP:5000
+      },
     }) ;
   }
   else {
@@ -59,6 +64,7 @@ exports.loginUser = asyncHandler(async (req: Request, res: Response) => {
         _id: user.id,
         name: user.name,
         email: user.email,
+        wallet:user.wallet,
         token: generateToken(user._id),
       },
     });
@@ -73,20 +79,22 @@ exports.loginUser = asyncHandler(async (req: Request, res: Response) => {
 });
 
 // Get user data
-exports.getUserData = asyncHandler(async (req: any, res: Response) => {
-  // The user ID to be finded  came from the authMiddleware
-  const { id, name, email, wallet } = await User.findById(req.user.id);
+exports.getUserData = asyncHandler(
+  async (req: RequestWithUser, res: Response) => {
+    // The user ID to be finded  came from the authMiddleware
+    const { id, name, email, wallet } = await User.findById(req.user.id);
 
-  res.status(200).json({
-    status: "sucess",
-    data: {
-      id: id,
-      name,
-      email,
-      wallet
-    },
-  });
-});
+    res.status(200).json({
+      status: "sucess",
+      result: {
+        id: id,
+        name,
+        email,
+        wallet,
+      },
+    });
+  }
+);
 
 // GENERATE TOKEN
 

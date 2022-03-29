@@ -16,15 +16,16 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please add a password"],
     },
-    GBP: {
-      type: Number,
-      required: [true, "Please add a GBP value"],
-      default: 10000,
-    },
-    USD: {
-      type: Number,
-      required: [true, "Please add a USD value"],
-      default: 0,
+    wallet: {
+      USD:{
+        type: Number,
+        required: [true, "Please add a USD value"],
+        default: 5000
+      },
+      GBP:{
+        type: Number,
+        required: [true, "Please add a GBP value"],
+        default: 5000}
     },
     trades: {
       type: Array,
