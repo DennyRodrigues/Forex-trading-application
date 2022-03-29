@@ -25,44 +25,46 @@ export const PastTrades = () => {
      
       return (
         <div className="past-trades-container">
-          {trades.map((trade: any, index) => {
-            const date = new Date(trade.date).toLocaleDateString("en-GB", {
-              year: "numeric",
-              month: "numeric",
-              day: "numeric",
-              hour: "numeric",
-              minute: "numeric",
-              second: "numeric",
-            });
-             console.log(trade);
-            return (
-              <div key={index} className="past-trade mb-3">
-                <ul className="list-group">
-                  <li className="list-group-item">
-                    Date: <span>{date}</span>
-                  </li>
-                  <li className="list-group-item">
-                    Rate:
-                    <span>{trade.exchangeRate}</span>
-                  </li>
-                  <li className="list-group-item">
-                    Entry Amount:
-                    <span>
-                      {Number(trade.entryAmount).toFixed(2)}
-                      {trade.entrySymbol}
-                    </span>
-                  </li>
-                  <li className="list-group-item">
-                    Exchange Received:
-                    <span>
-                      {Number(trade.exitAmount).toFixed(2)}
-                      {trade.exitSymbol}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            );
-          })}
+          {/* It will receive the trades array, to render the most recents first */}
+          {trades
+            .slice(0)
+            .reverse()
+            .map((trade: any, index) => {
+              const date = new Date(trade.date).toLocaleDateString("en-GB", {
+                year: "numeric",
+                month: "numeric",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric",
+              });
+              console.log(trade);
+              return (
+                <div key={index} className="past-trade mb-3">
+                  <ul className="list-group">
+                    <li className="list-group-item">
+                      Date: <span>{date}</span>
+                    </li>
+                    <li className="list-group-item">
+                      trade:
+                      <span>
+                        {Number(trade.entryAmount).toFixed(2)}
+                        {trade.entrySymbol}
+                      </span>
+                      ➔
+                      <span>
+                        {Number(trade.exitAmount).toFixed(2)}
+                        {trade.exitSymbol}
+                      </span>
+                    </li>
+                    <li className="list-group-item">
+                      Rate:
+                      <span>{trade.exchangeRate.toFixed(6)}</span>
+                    </li>
+                  </ul>
+                </div>
+              );
+            })}
         </div>
       );
     } else {
