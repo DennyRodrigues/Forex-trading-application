@@ -19,12 +19,13 @@ exports.postTrade = asyncHandler(
     const UserId = req.user.id;
     // Check if user has send all the property of the trade
     if (!date || !entrySymbol || !exitSymbol || !exchangeRate || !value) {
-      res.status(400).json({
+       res.status(400).json({
         status: "fail",
         message: "request body is missing property",
       });
     }
-      if (!isNaN(entryAmount)) {
+    // Check if entry Amount is a positive number 
+      if (!isNaN(entryAmount) || entryAmount > 0) {
         const user = await User.findById(UserId);
         const exitAmount = entryAmount * exchangeRate;
 

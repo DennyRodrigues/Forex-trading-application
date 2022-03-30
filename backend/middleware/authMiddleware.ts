@@ -16,7 +16,7 @@ const protect = asyncHandler(
         // Verify token
         const decoded:any = jwt.verify(token, process.env.JWT_SECRET!);
 
-        // Get user from the token and add user information to request 
+        // Get user from the token and add user id to request 
         req.user = await User.findById(decoded.id).select("id");
         next();
       } catch (error) {
