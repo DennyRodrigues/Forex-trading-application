@@ -40,7 +40,7 @@ export const RegisterForm = () => {
      
   }
   return (
-    <Form onSubmit={submitFormHandler}>
+    <Form onSubmit={submitFormHandler} autoComplete="off">
       <Form.Group>
         <Form.Label>Name</Form.Label>
         <Form.Control
@@ -50,6 +50,7 @@ export const RegisterForm = () => {
           name="value"
           onChange={(e) => setName(e.target.value)}
           value={name}
+          autoComplete="off"
         />
         <Form.Label>Email</Form.Label>
         <Form.Control
@@ -59,16 +60,18 @@ export const RegisterForm = () => {
           name="value"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          autoComplete="off"
         />
         <Form.Label>Password</Form.Label>
         <Form.Control
+          required
           type="password"
           placeholder="Passoword"
           name="value"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
-        <Button className="w-100 fs-3 p-0" type="submit">
+        <Button className="w-100  p-2 mt-3" type="submit">
           Register User
         </Button>
       </Form.Group>

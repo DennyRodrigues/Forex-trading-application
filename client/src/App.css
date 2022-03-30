@@ -1,6 +1,5 @@
 .container{
   padding: 64px 0px;
-  font-size: 32px;
 
   display: flex;
   flex-direction: column;
@@ -9,72 +8,105 @@
 
 }
 
-/* BUTTONS */
-span{
-  color: red;
-  font-weight: 600;
-  
-}
 
 /* Trade */
 
 .tradeContainer{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+ display: grid;
+ grid-template-columns: 300px 50px 300px;
+ align-items: center;
   gap:20px;
+  width: 650px;
 
   margin-bottom: 72px;
+  flex-wrap: nowrap;
 }
+
 .Calculation{
-  min-width: 140px;
+  width: 300px;
   padding: 10px 20px;
+  white-space: nowrap;
 }
 
 
 /* Past trades */
 
-.past-trade{
-  background-color: #bbb;
+.past-trades-container .list-group-item{
+  background-color: #ddd;
+  box-shadow: 0px 7px 10px 5px rgba(0,0,0,.1);
 }
-.list-group-item{
-  background-color: #bbb;
-}
+
 .list-group-item span{
-  margin:0 20px;
+  margin:0 30px;
   font-weight: 600;
   color: black;
 }
 
 
-/* Navigation */
+/*  Headers */
+.header{
+  padding: 10px 10px;
+}
+
+/* Nav */
+.nav{
+  font-size: 24px;
+  background-color: rgb(241, 230, 230);
+  padding: 10px 20px;
+}
+
+.log-off{
+  margin-right: 40px;
+}
+.nav-item{
+  display: flex;
+  align-items: center;
+}
+.nav .btn{
+  font-size: inherit;
+}
+.nav-user-info{
+  margin-left: auto;
+}
 /* UserInfo */
 .user-info{
-  font-size: 20px;
-
   margin-left: auto;
-  margin-right: 160px;
 
+  display: flex;
+  align-items: center;
+  justify-content: right;
+
+}
+.user-info p{
+  margin-bottom:0px;
+  margin-left: 24px;
+}
+.user-info__menu{
+  color: black!important;
+}
+.user-info__menu a{
+  color: black !important;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.user-info__name{
-  margin-left: 10px;
-  font-size: 30px;
-  
-}
-.user-info__text{
-  margin-right: 40px;
-}
 .user-info__wallet{
-  margin-left: 10px;
-   font-size: 40px;
-   
+  display: flex;
+  align-items: center;
+
 }
-.user-info__wallet--USD{
-  color: green;
+.user-info__wallet-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.user-info__wallet--GBP{
-  color: red;
+.user-info__wallet-box{
+  font-weight: 700;
+}
+
+/* ERROR */
+.error{
+  height: 32px;
+  margin-bottom: 0px;
+  color: #d81d1d;
 }

@@ -7,8 +7,9 @@ export const TradeCalculation = (props: any) => {
   const exitSymbol = props.exitSymbol;
   const entryAmount = props.entryAmount
   let calculation = 0;
+
+  // The calculation will change depeding if the user wants to trade USD to GBP or GBP to USD. 
   // Show only two decimal digits of the final calculation
-  // If the final 
   if (exitSymbol === "USD") {
     calculation = Number((entryAmount * exchangeRate).toFixed(2));
   }

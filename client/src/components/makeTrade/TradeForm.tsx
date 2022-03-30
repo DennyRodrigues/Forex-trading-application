@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../authentication/AuthContext";
 import WebSocketContext from "../socketcontext/WebSocketContext";
 
@@ -12,11 +12,14 @@ export const TradeForm = (props: any) => {
   const entrySymbol = props.entrySymbol;
   const exitSymbol = props.exitSymbol;
   const webSocketRate = useContext(WebSocketContext);
+  const [isInvalid, setIsInvalid] = useState(false);
+
+
 
   // It's necessary to invert the exchange rate depending if the user wants to exchange USD -> GBP or GBP ->USD
-  let exchangeRate:number;
+  let exchangeRate: number;
   if (entrySymbol === "USD") {
-    exchangeRate = 1/webSocketRate;
+    exchangeRate = 1 / webSocketRate;
   }
   if (entrySymbol === "GBP") {
     exchangeRate = webSocketRate;
@@ -27,6 +30,8 @@ export const TradeForm = (props: any) => {
   function submitForm(e: any) {
     e.preventDefault();
 
+    setIsInvalid(false)
+
     fetch(`http://localhost:4100/api/v1/trades`, {
       method: "post",
       headers: {
@@ -35,35 +40,48 @@ export const TradeForm = (props: any) => {
       },
       body: JSON.stringify({
         date: new Date(),
-        entrySymbol:entrySymbol,
+        entrySymbol: entrySymbol,
         exitSymbol: exitSymbol,
         exchangeRate: exchangeRate,
-        value: entryAmount
+        value: entryAmount,
       }),
     })
       .then((res: any) => res.json())
       .then((res) => {
-        if (updateUser) {
-          updateUser();
+        if (res.status === "success") {
+           setIsInvalid(false);
+          if (updateUser) {
+            updateUser();
+           
+          }
         }
-        console.log(res);
+         else {
+          setIsInvalid(true);
+        }
+        
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e)
+        setIsInvalid(true);
+      });
   }
   return (
-    <Form onSubmit={submitForm}>
+    <Form onSubmit={submitForm} className="trade-form">
       <Form.Group>
         <Form.Label>
           {entrySymbol} to {exitSymbol}
         </Form.Label>
         <Form.Control
           type="number"
-          placeholder="Exchange amout"
+          placeholder="Exchange amount"
           name="value"
           onChange={props.changeHandler}
           value={entryAmount}
+          min="0"
+          max="5000"
         />
-        <Button className="w-100 fs-3 p-0" type="submit">
+        {isInvalid? <p className="error">Not able to make trade</p>:<p className="error"></p>}
+        <Button className="w-100 fs-4 mt-1 p-0 button" type="submit">
           Trade
         </Button>
       </Form.Group>

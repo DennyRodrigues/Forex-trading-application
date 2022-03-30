@@ -9,7 +9,7 @@ export const Nav = (props: any) => {
 
   if (token) {
     return (
-      <ul className="nav">
+      <ul className="nav" >
         <li className="nav-item">
           <Link to="/" className="nav-link">
             Trade
@@ -20,15 +20,16 @@ export const Nav = (props: any) => {
             Past Trades
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="nav-item nav-user-info">
+          <UserInfo />
+        </li>
+        <li className="nav-item log-off">
           {onLogout && (
-            <button className="btn nav-text" onClick={() => onLogout()}>
-              {" "}
-              LogOff
+            <button className="btn nav-text " onClick={() => onLogout()}>
+              Log off
             </button>
           )}
         </li>
-        <UserInfo />
       </ul>
     );
   } else {
@@ -36,7 +37,7 @@ export const Nav = (props: any) => {
       <ul className="nav">
         <li className="nav-item">
           <Link to="/login" className="nav-link">
-            Login In
+            Login
           </Link>
         </li>
         <li className="nav-item">

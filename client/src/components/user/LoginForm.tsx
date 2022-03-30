@@ -7,6 +7,8 @@ import { AuthContext } from "../authentication/AuthContext";
 export const LoginForm = (props: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isInvalid, setIsInvalid] = useState(false);
+
 
   let onLogin = useContext(AuthContext)?.onLogin;
 
@@ -34,12 +36,16 @@ export const LoginForm = (props: any) => {
             onLogin(res.result);
           }
         } else {
+          setIsInvalid(true)
         }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        setIsInvalid(true)
+      });
   }
   return (
-    <Form onSubmit={submitFormHandler}>
+    <Form onSubmit={submitFormHandler} autoComplete="off">
       <Form.Group>
         <Form.Label>Email</Form.Label>
         <Form.Control
@@ -49,18 +55,23 @@ export const LoginForm = (props: any) => {
           name="value"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          autoComplete="off"
         />
         <Form.Label>Password</Form.Label>
         <Form.Control
+          required
           type="password"
           placeholder="password"
           name="value"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          autoComplete="off"
         />
-        <Button className="w-100 fs-3 p-0" type="submit">
+
+        <Button className="w-100 fs-3 p-0 mt-3" type="submit">
           Login In
         </Button>
+        {isInvalid && <p className="error">Invalid Request</p>}
       </Form.Group>
     </Form>
   );
