@@ -27,10 +27,10 @@ export const TradeForm = (props: any) => {
 
   const entryAmount = props.entryAmount;
   // The form will submit using fetch
-  function submitForm(e: any) {
+  function onSubmitHandler(e: any) {
     e.preventDefault();
 
-    setIsInvalid(false)
+    setIsInvalid(false);
 
     fetch(`http://localhost:4100/api/v1/trades`, {
       method: "post",
@@ -49,39 +49,44 @@ export const TradeForm = (props: any) => {
       .then((res: any) => res.json())
       .then((res) => {
         if (res.status === "success") {
-           setIsInvalid(false);
+          setIsInvalid(false);
           if (updateUser) {
             updateUser();
-           
           }
-        }
-         else {
+        } else {
           setIsInvalid(true);
         }
-        
       })
       .catch((e) => {
-        console.log(e)
+        console.log(e);
         setIsInvalid(true);
       });
   }
   return (
-    <Form onSubmit={submitForm} className="trade-form">
+    <Form onSubmit={onSubmitHandler} className="trade-form" role="form">
       <Form.Group>
         <Form.Label>
           {entrySymbol} to {exitSymbol}
         </Form.Label>
         <Form.Control
           type="number"
-          placeholder="Exchange amount"
+          placeholder="entry amount"
           name="value"
           onChange={props.changeHandler}
           value={entryAmount}
           min="0"
           max="5000"
         />
-        {isInvalid? <p className="error">Not able to make trade</p>:<p className="error"></p>}
-        <Button className="w-100 fs-4 mt-1 p-0 button" type="submit">
+        {isInvalid ? (
+          <p className="error">Not able to make trade</p>
+        ) : (
+          <p className="error"></p>
+        )}
+        <Button
+          className="w-100 fs-4 mt-1 p-0 button"
+          type="submit"
+          role="submitButton"
+        >
           Trade
         </Button>
       </Form.Group>
