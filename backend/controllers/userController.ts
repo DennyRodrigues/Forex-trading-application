@@ -49,7 +49,6 @@ exports.loginUser = asyncHandler(async (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  console.log(req.body, email, password);
 
   const user = await User.findOne({ email });
 

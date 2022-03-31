@@ -3,7 +3,7 @@ import cors  from "cors";
 import { tradeRouter }  from "./routes/tradeRouter";
 import { userRouter }  from "./routes/userRouter";
 import {errorMiddleware}  from "./middleware/errorMiddleware";
-import { setHeadersMiddleware } from "./middleware/setHeadersMiddleware";
+
 
 export const app = express();
 
@@ -21,10 +21,6 @@ app.use("/api/v1/trades", tradeRouter);
 
 // /Register to register a new user, /login to receive a token back and /me to get user information
 app.use("/api/v1/users", userRouter);
-
-
- 
-app.use(setHeadersMiddleware);
 
 
 // Middlewares
