@@ -8,10 +8,12 @@ export const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isInvalid, setIsInvalid] = useState(false);
   const navigate = useNavigate();
   
   // The form will submit using fetch
   function submitFormHandler(e: any) {
+    setIsInvalid(false)
     e.preventDefault();
     fetch(`http://localhost:4100/api/v1/users/register`, {
       method: "post",
@@ -33,10 +35,13 @@ export const RegisterForm = () => {
           navigate('/login')
         }
         else {
+          setIsInvalid(true)
 
         }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e)
+      setIsInvalid(true)});
      
   }
   return (
@@ -71,6 +76,7 @@ export const RegisterForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
+        {isInvalid && <p className="error" data-testId>Invalid Request</p>}
         <Button className="w-100  p-2 mt-3" type="submit">
           Register User
         </Button>

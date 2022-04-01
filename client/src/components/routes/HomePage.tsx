@@ -8,7 +8,7 @@ export const Home = () => {
   return (
     <RequireAuth>
       <WebSocketProvider>
-        <div className="container">
+        <div className="container Home">
           <ExchangeRate />
           <MakeTrade entrySymbol="GBP" exitSymbol="USD" />
           <MakeTrade entrySymbol="USD" exitSymbol="GBP" />

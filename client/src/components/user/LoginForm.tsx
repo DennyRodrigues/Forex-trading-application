@@ -67,11 +67,18 @@ export const LoginForm = (props: any) => {
           value={password}
           autoComplete="off"
         />
-
-        <Button className="w-100 fs-3 p-0 mt-3" type="submit">
+        {isInvalid && (
+          <p className="error" data-testid="error">
+            Invalid Request
+          </p>
+        )}
+        <Button
+          className="w-100 fs-3 p-0 mt-3"
+          type="submit"
+          role="SubmitButton"
+        >
           Login In
         </Button>
-        {isInvalid && <p className="error">Invalid Request</p>}
       </Form.Group>
     </Form>
   );

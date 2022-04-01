@@ -6,7 +6,7 @@ export const TradeCalculation = (props: any) => {
   const exchangeRate = useContext(WebSocketContext)
   const exitSymbol = props.exitSymbol;
   const entryAmount = props.entryAmount
-  let calculation = 0;
+  let calculation:number|null = null;
 
   // The calculation will change depeding if the user wants to trade USD to GBP or GBP to USD. 
   // Show only two decimal digits of the final calculation
@@ -18,14 +18,18 @@ export const TradeCalculation = (props: any) => {
   }
     
   
-    if (calculation > 0) {
+    if (calculation) {
       return (
         <p className="Calculation">
           {calculation} {exitSymbol}
         </p>
       );
     } else {
-      return <p className="Calculation">0</p>;
+      return (
+        <p className="Calculation" data-testid="calculation">
+          0
+        </p>
+      );
     }
     
  }
