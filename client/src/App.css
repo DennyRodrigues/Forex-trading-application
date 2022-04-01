@@ -11,21 +11,32 @@
 
 /* Trade */
 
-.tradeContainer{
+.trade-container{
  display: grid;
- grid-template-columns: 300px 50px 300px;
+ grid-template-columns: 300px 40px 260px;
  align-items: center;
   gap:20px;
-  width: 650px;
 
   margin-bottom: 72px;
   flex-wrap: nowrap;
+  background-color: rgb(241, 230, 230);
+  padding: 20px;
+  border-radius: 2px;
 }
-
+.trade-equal{
+  font-size: 30px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 58px;
+}
 .Calculation{
-  width: 300px;
   padding: 10px 20px;
+  background-color: white;
   white-space: nowrap;
+  margin-bottom: 48px;
+  border: 1px solid #ced4da;;
 }
 
 
@@ -90,6 +101,13 @@
   align-items: center;
   justify-content: center;
 }
+
+.dropdown-item { 
+color: black !important;
+}
+.user-info__text {
+  text-align: center;
+}
 .user-info__wallet{
   display: flex;
   align-items: center;
@@ -103,10 +121,14 @@
 .user-info__wallet-box{
   font-weight: 700;
 }
+.user-info__dropdowm-item{
+  display: flex;
+  flex-direction: column;
 
+}
 /* ERROR */
 .error{
-  height: 32px;
+  height: 40px;
   margin-bottom: 0px;
   color: #d81d1d;
 }

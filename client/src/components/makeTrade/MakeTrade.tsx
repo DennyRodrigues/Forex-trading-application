@@ -17,14 +17,14 @@ export const MakeTrade = (props:any) => {
   }
 
   return (
-    <div className="tradeContainer">
+    <div className="trade-container">
       <TradeForm
         changeHandler={changeHandler}
         entryAmount={entryAmount}
         entrySymbol={props.entrySymbol}
         exitSymbol={props.exitSymbol}
       />
-      <p>=</p>
+      <p className="trade-equal">=</p>
       <TradeCalculation
         entryAmount={entryAmount}
         exitSymbol={props.exitSymbol}

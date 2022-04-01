@@ -21,6 +21,8 @@ exports.postTrade = asyncHandler(
     // Get user ID from auth Middleware
     const UserId = req.user.id;
 
+    
+
     // Check if user has send all the property of the trade
     if (!date || !entrySymbol || !exitSymbol || !exchangeRate || !value) {
        res.status(400).json({
@@ -36,14 +38,21 @@ exports.postTrade = asyncHandler(
 
         // Validation on wallet user
 
+
         // Check if the wallet has the entry symbol and exit symbol
-        if (!user.wallet[entrySymbol] || !user.wallet[exitSymbol]) {
+        if (
+          typeof user.wallet[entrySymbol] === "undefined" ||
+          typeof user.wallet[exitSymbol] === "undefined"
+        ) {
           res.status(400).json({
             status: "fail",
             message: "not a valid  symbol on wallet to make transaction",
           });
-          return
+          return;
         }
+
+
+        
         // Check if the wallet has enough money on entry symbol
         if (Number(user.wallet[entrySymbol]) < entryAmount) {
           res.status(400).json({
@@ -55,6 +64,8 @@ exports.postTrade = asyncHandler(
 
         // Substract entry value on user wallet
         user.wallet[entrySymbol] = Number(user.wallet[entrySymbol]) - entryAmount;
+
+       
 
         // Add exit value on user wallet
         user.wallet[exitSymbol] = Number(user.wallet[exitSymbol]) + exitAmount;

@@ -6,8 +6,10 @@ export const PastTrades = () => {
   let token = useContext(AuthContext)?.token;
 
   const [trades, setTrades] = useState<[] | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true)
     fetch(`http://localhost:4100/api/v1/trades`, {
       method: "get",
       headers: {
@@ -17,8 +19,12 @@ export const PastTrades = () => {
       .then((res: any) => res.json())
       .then((res) => {
         setTrades(res.result.trades);
+        setIsLoading(false);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e)
+        setIsLoading(false);
+      });
   }, [token]);
 
   if (trades) {
@@ -78,7 +84,10 @@ export const PastTrades = () => {
     } else {
       return <p>No past trades were found</p>;
     }
-  } else {
+  } else if(isLoading) {
     return <p>Loading past trades...</p>;
+  }
+  else {
+    return <p>ERROR: Unable to connect with server</p>;
   }
 };
