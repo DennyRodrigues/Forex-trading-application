@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 import User from "../database/models/userModel";
 import { generateToken } from "../helpers/generateToken";
 import bcrypt from "bcrypt";
-import { RequestWithUser } from "../../types/custom.request";
+import { RequestWithUser } from "../types/custom.request";
 
 // Register a user
 exports.registerUser = asyncHandler(async (req: Request, res: Response) => {
@@ -60,7 +60,7 @@ exports.loginUser = asyncHandler(async (req: Request, res: Response) => {
         name: user.name,
         email: user.email,
         wallet: user.wallet,
-        token: generateToken(user._id),
+        token: generateToken(user.id),
       },
     });
   } else {

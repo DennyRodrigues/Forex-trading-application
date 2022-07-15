@@ -2,7 +2,7 @@ import asyncHandler from "express-async-handler";
 import User from "../database/models/userModel";
 import { Request, Response } from "express"
 
-import { RequestWithUser } from "../../types/custom.request";
+import { RequestWithUser } from "../types/custom.request";
 
 let ObjectID = require("mongodb").ObjectID;
 exports.postTrade = asyncHandler(
