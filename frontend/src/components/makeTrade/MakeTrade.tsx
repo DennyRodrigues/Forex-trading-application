@@ -3,12 +3,15 @@ import { TradeForm } from "./TradeForm"
 import { ChangeEvent, useState } from "react";
 
 
-export const MakeTrade = (props:any) => {
+export const MakeTrade = (props: any) => {
 
   const [entryAmount, setEntryAmount] = useState(0);
   function changeHandler(e: ChangeEvent<HTMLInputElement>) {
+    // Keep the trade value between 0 and 5000
+    const { value, min, max } = e.target;
 
-    let newValue = Number(e.target.value);
+    let newValue = Math.max(Number(min), Math.min(Number(max), Number
+      (value)));
 
     setEntryAmount(newValue);
   }

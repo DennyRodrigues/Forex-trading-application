@@ -58,7 +58,7 @@ describe("test Make Trade component", () => {
   it("should make correct calculation", async () => {
     useContextMock.mockReturnValue(2);
 
-    const { rerender } = render(<MakeTrade exitSymbol="USD"></MakeTrade>);
+    const { rerender } = render(<MakeTrade exitSymbol="JPY"></MakeTrade>);
 
 
     const input = screen.getByPlaceholderText("entry amount", { exact: false });
@@ -66,13 +66,13 @@ describe("test Make Trade component", () => {
 
     user.type(input, "5");
     await waitFor(() => {
-      expect(calculation).toHaveTextContent("10 USD");
+      expect(calculation).toHaveTextContent("10 JPY");
     });
 
-    rerender(<MakeTrade exitSymbol={"BTC"}></MakeTrade>);
+    rerender(<MakeTrade exitSymbol={"USD"}></MakeTrade>);
 
     await waitFor(() => {
-      expect(calculation).toHaveTextContent("2.5 BTC");
+      expect(calculation).toHaveTextContent("2.5 USD");
     });
 
   });

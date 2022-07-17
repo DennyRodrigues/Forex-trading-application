@@ -23,14 +23,6 @@ export const startWebScocketServer = () => {
     console.log("Websocket Server is up & running", port);
   });
 
-  backendSocket.on("open", (data) => {
-    console.log("Message from websocket server");
-  });
-
-  backendSocket.on("connection", ()  => {
-    console.log("Backend websocket connected");
-  });
-
   // Start external API socket
   const connectExternalAPI = () => {
     const tradeSocket = new ws(
@@ -41,7 +33,7 @@ export const startWebScocketServer = () => {
     const subscribe = {
       action: "subscribe",
       params: {
-        symbols: "BTC/USD",
+        symbols: "USD/JPY",
       },
     };
     // Connection opened
@@ -52,9 +44,8 @@ export const startWebScocketServer = () => {
 
     // Listen for messages and emit it using the backedSocket
     tradeSocket.on("message", (data) => {
-      console.log("Message from External websocket ", parseData(data));
       backendSocket.emit("message", parseData(data));
     });
-  }
+  };
   connectExternalAPI();
 };

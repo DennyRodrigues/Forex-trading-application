@@ -11,8 +11,8 @@ User.findOne = jest.fn().mockReturnValueOnce({
   email: "test@gmail.com",
   password: 1234,
   wallet: {
+    JPY: 500,
     USD: 500,
-    BTC: 500,
   },
 });
 

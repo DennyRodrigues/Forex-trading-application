@@ -8,8 +8,8 @@ User.findOne = jest.fn().mockReturnValueOnce({
   email: "test@gmail.com",
   password: 1234,
   wallet: {
+    JPY: 500,
     USD: 500,
-    BTC: 500,
   },
   trades: ["tradeTest1", "tradeTest2"],
 });
@@ -19,8 +19,8 @@ User.findById = jest.fn().mockReturnValue({
   password: 1234,
   trades: ["tradeTest1", "tradeTest2"],
   wallet: {
+    JPY: 500,
     USD: 500,
-    BTC: 500,
   },
   select: () => {
     return {

@@ -6,7 +6,7 @@ export const ExchangeRate = () => {
   if (!(exchangeRate === 0)) {
     return (
       <p>
-        1 BTC = <span>{exchangeRate}</span> USD
+        1 USD = <span>{exchangeRate.toFixed(3)}</span> JPY
       </p>
     );
   } else {

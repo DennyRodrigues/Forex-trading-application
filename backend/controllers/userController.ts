@@ -34,8 +34,8 @@ exports.registerUser = asyncHandler(async (req: Request, res: Response) => {
       _id: user.id,
       email: email,
       wallet: {
+        JPY: 5000,
         USD: 5000,
-        BTC: 5000,
       },
     });
   } else {

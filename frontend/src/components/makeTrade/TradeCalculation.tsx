@@ -8,13 +8,13 @@ export const TradeCalculation = (props: any) => {
   const entryAmount = props.entryAmount
   let calculation: number | null = null;
 
-  // The calculation will change depeding if the user wants to trade USD to BTC or BTC to USD. 
+  // The calculation will change depeding if the user wants to trade JPY to USD or USD to JPY. 
   // Show only two decimal digits of the final calculation
-  if (exitSymbol === "USD") {
-    calculation = Number((entryAmount * exchangeRate).toFixed(2));
+  if (exitSymbol === "JPY") {
+    calculation = Number((entryAmount * exchangeRate).toFixed(3));
   }
-  if (exitSymbol === "BTC") {
-    calculation = Number((entryAmount / exchangeRate).toFixed(2));
+  if (exitSymbol === "USD") {
+    calculation = Number((entryAmount / exchangeRate).toFixed(3));
   }
 
 

@@ -60,7 +60,6 @@ export const PastTrades = () => {
                       second: "numeric",
                     }
                   );
-                  console.log(trade);
                   return (
                     <tr key={index}>
                       <td>{trades.length - index}</td>

@@ -29,14 +29,12 @@ export const LoginForm = (props: any) => {
         return res.json();
       })
       .then((res) => {
-        console.log(res);
         if (res.status === "success") {
           // Add token to AuthContext
           if (onLogin) {
             onLogin(res.result);
           }
         } else {
-          console.log(res);
           setIsInvalid(true)
         }
       })

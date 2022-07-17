@@ -5,8 +5,8 @@ interface value {
   user: null | {
     name: string | null;
     wallet: {
-      USD: number,
-      BTC: number
+      JPY: number,
+      USD: number
     } | null;
   },
   token: string | null;
