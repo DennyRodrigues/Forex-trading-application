@@ -32,7 +32,7 @@ export const TradeForm = (props: any) => {
 
     setIsInvalid(false);
 
-    fetch(`http://localhost:4100/api/v1/trades`, {
+    fetch(`http://localhost:${process.env.REACT_APP_API_PORT}/api/v1/trades`, {
       method: "post",
       headers: {
         Authorization: `Bearer ${token}`,

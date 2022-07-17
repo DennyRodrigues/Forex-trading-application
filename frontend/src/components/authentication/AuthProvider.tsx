@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const AuthProvider = (props: any) => {
   const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<{ name: string; wallet: {USD:number, GBP:number} } | null>(
+  const [user, setUser] = useState<{ name: string; wallet: { USD: number, GBP: number } } | null>(
     null
   );
   const navigate = useNavigate();
@@ -14,11 +14,11 @@ export const AuthProvider = (props: any) => {
     token: string;
     wallet: {
       USD: number,
-      GBP:number,
+      GBP: number,
     };
   }) => {
     setToken(response.token);
-    setUser({ name: response.name, wallet: response.wallet});
+    setUser({ name: response.name, wallet: response.wallet });
     navigate("/", { replace: true });
   };
 
@@ -27,7 +27,7 @@ export const AuthProvider = (props: any) => {
   };
 
   const updateUser = () => {
-    fetch(`http://localhost:4100/api/v1/users/me`, {
+    fetch(`http://localhost:${process.env.REACT_APP_API_PORT}/api/v1/users/me`, {
       method: "get",
       headers: {
         Authorization: `Bearer ${token}`,

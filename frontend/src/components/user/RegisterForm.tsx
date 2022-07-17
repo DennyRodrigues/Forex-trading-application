@@ -10,12 +10,12 @@ export const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [isInvalid, setIsInvalid] = useState(false);
   const navigate = useNavigate();
-  
+
   // The form will submit using fetch
   function submitFormHandler(e: any) {
     setIsInvalid(false)
     e.preventDefault();
-    fetch(`http://localhost:5001/api/v1/users/register`, {
+    fetch(`http://localhost:${process.env.REACT_APP_API_PORT}/api/v1/users/register`, {
       method: "post",
       headers: {
         "Content-type": "application/json",
@@ -41,8 +41,9 @@ export const RegisterForm = () => {
       })
       .catch((e) => {
         console.log(e)
-      setIsInvalid(true)});
-     
+        setIsInvalid(true)
+      });
+
   }
   return (
     <Form onSubmit={submitFormHandler} autoComplete="off">

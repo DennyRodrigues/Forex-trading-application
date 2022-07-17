@@ -10,7 +10,7 @@ export const PastTrades = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    fetch(`http://localhost:4100/api/v1/trades`, {
+    fetch(`http://localhost:${process.env.REACT_APP_API_PORT}/api/v1/trades`, {
       method: "get",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -29,7 +29,7 @@ export const PastTrades = () => {
 
   if (trades) {
     if (trades?.length > 0) {
-     
+
       return (
         <div className="past-trades-container">
           <h2 className="text-center mb-4">Past Trades</h2>
@@ -84,7 +84,7 @@ export const PastTrades = () => {
     } else {
       return <p>No past trades were found</p>;
     }
-  } else if(isLoading) {
+  } else if (isLoading) {
     return <p>Loading past trades...</p>;
   }
   else {
