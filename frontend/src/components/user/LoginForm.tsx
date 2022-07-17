@@ -15,7 +15,7 @@ export const LoginForm = (props: any) => {
   // The form will submit using fetch
   function submitFormHandler(e: any) {
     e.preventDefault();
-    fetch(`http://localhost:4100/api/v1/users/login`, {
+    fetch(`http://localhost:5001/api/v1/users/login`, {
       method: "post",
       headers: {
         "Content-type": "application/json",
@@ -36,6 +36,7 @@ export const LoginForm = (props: any) => {
             onLogin(res.result);
           }
         } else {
+          console.log(res);
           setIsInvalid(true)
         }
       })

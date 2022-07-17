@@ -15,7 +15,7 @@ export const RegisterForm = () => {
   function submitFormHandler(e: any) {
     setIsInvalid(false)
     e.preventDefault();
-    fetch(`http://localhost:4100/api/v1/users/register`, {
+    fetch(`http://localhost:5001/api/v1/users/register`, {
       method: "post",
       headers: {
         "Content-type": "application/json",
