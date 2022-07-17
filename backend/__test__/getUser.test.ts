@@ -3,17 +3,13 @@ import request from "supertest";
 import { app } from "../app";
 import User from "../database/models/userModel";
 
-
-
-
-
 User.findOne = jest.fn().mockReturnValueOnce({
   name: "test",
   email: "test@gmail.com",
   password: 1234,
   wallet: {
     USD: 500,
-    GBP: 500,
+    BTC: 500,
   },
 });
 User.findById = jest.fn().mockReturnValue({
@@ -22,7 +18,7 @@ User.findById = jest.fn().mockReturnValue({
   password: 1234,
   wallet: {
     USD: 500,
-    GBP: 500,
+    BTC: 500,
   },
   select: () => {
     return {
@@ -33,12 +29,11 @@ User.findById = jest.fn().mockReturnValue({
   },
 });
 
-
-jest.mock('jsonwebtoken', () => {
+jest.mock("jsonwebtoken", () => {
   const originalModule = jest.requireActual("jsonwebtoken"); // original functions
 
   return {
-    ...originalModule, 
+    ...originalModule,
     verify: jest.fn().mockReturnValue({ id: "testID" }), // overwrite verify})
   };
 });
@@ -67,7 +62,7 @@ describe("test GET router /api/v1/users/me", () => {
         expect(res.body.result.name).toBe("test");
         expect(res.body.result.email).toBe("test@gmail.com");
         expect(res.body.result.wallet.USD).toBe(500);
-        expect(res.body.result.wallet.GBP).toBe(500);
+        expect(res.body.result.wallet.BTC).toBe(500);
       });
   });
   it("Should receive not authorized", async () => {
@@ -75,7 +70,6 @@ describe("test GET router /api/v1/users/me", () => {
       .get("/api/v1/users/me")
       .then((res) => {
         expect(res.statusCode).toBe(401);
-
       });
   });
 });

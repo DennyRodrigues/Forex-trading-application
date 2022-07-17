@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const userSchema = new mongoose.Schema(
   {
     email: {
@@ -17,15 +16,16 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please add a password"],
     },
     wallet: {
-      USD:{
+      USD: {
         type: Number,
         required: [true, "Please add a USD value"],
-        default: 5000
+        default: 1000000,
       },
-      GBP:{
+      BTC: {
         type: Number,
-        required: [true, "Please add a GBP value"],
-        default: 5000}
+        required: [true, "Please add a BTC value"],
+        default: 5,
+      },
     },
     trades: {
       type: Array,
@@ -37,5 +37,5 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-  
+
 export default mongoose.model("User", userSchema);

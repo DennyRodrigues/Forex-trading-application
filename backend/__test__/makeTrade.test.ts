@@ -3,14 +3,13 @@ import { app } from "../app";
 import bcrypt from "bcrypt";
 import User from "../database/models/userModel";
 
-
 User.findOne = jest.fn().mockReturnValueOnce({
   name: "test",
   email: "test@gmail.com",
   password: 1234,
   wallet: {
     USD: 5000,
-    GBP: 5000,
+    BTC: 5000,
   },
   trades: ["tradeTest1", "tradeTest2"],
 });
@@ -21,7 +20,7 @@ User.findById = jest.fn().mockReturnValue({
   trades: ["tradeTest1", "tradeTest2"],
   wallet: {
     USD: 5000,
-    GBP: 5000,
+    BTC: 5000,
   },
   select: () => {
     return {
@@ -80,7 +79,7 @@ describe("test router POST /api/v1/trades", () => {
       .send(
         JSON.stringify({
           entrySymbol: "USD",
-          exitSymbol: "GBP",
+          exitSymbol: "BTC",
           exchangeRate: "1.5",
           value: "100",
         })
@@ -97,7 +96,7 @@ describe("test router POST /api/v1/trades", () => {
       .send(
         JSON.stringify({
           entrySymbol: "USD",
-          exitSymbol: "GBP",
+          exitSymbol: "BTC",
           exchangeRate: "1.5",
           value: "100",
         })
@@ -115,7 +114,7 @@ describe("test router POST /api/v1/trades", () => {
         JSON.stringify({
           date: new Date(),
           entrySymbol: "USD",
-          exitSymbol: "GBP",
+          exitSymbol: "BTC",
           exchangeRate: "1.5",
           value: "10000",
         })
@@ -127,25 +126,7 @@ describe("test router POST /api/v1/trades", () => {
         );
       });
   });
-  it("Should post a new trade USD to GBP", async () => {
-    const res = await request(app)
-      .post("/api/v1/trades")
-      .set({ Authorization: `Bearer ${token}` })
-      .set("Content-type", "application/json")
-      .send(
-        JSON.stringify({
-          date: new Date(),
-          entrySymbol:'USD',
-          exitSymbol:'GBP',
-          exchangeRate: 1.5,
-          value: 100,
-        })
-      )
-      .then((res) => {
-        expect(res.statusCode).toBe(201);
-      });
-  });
-  it("Should post a new trade GBP to USD", async () => {
+  it("Should post a new trade USD to BTC", async () => {
     const res = await request(app)
       .post("/api/v1/trades")
       .set({ Authorization: `Bearer ${token}` })
@@ -154,7 +135,25 @@ describe("test router POST /api/v1/trades", () => {
         JSON.stringify({
           date: new Date(),
           entrySymbol: "USD",
-          exitSymbol: "GBP",
+          exitSymbol: "BTC",
+          exchangeRate: 1.5,
+          value: 100,
+        })
+      )
+      .then((res) => {
+        expect(res.statusCode).toBe(201);
+      });
+  });
+  it("Should post a new trade BTC to USD", async () => {
+    const res = await request(app)
+      .post("/api/v1/trades")
+      .set({ Authorization: `Bearer ${token}` })
+      .set("Content-type", "application/json")
+      .send(
+        JSON.stringify({
+          date: new Date(),
+          entrySymbol: "USD",
+          exitSymbol: "BTC",
           exchangeRate: "1.5",
           value: "100",
         })

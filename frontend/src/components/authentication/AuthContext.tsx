@@ -2,12 +2,12 @@ import { createContext } from "react";
 
 
 interface value {
-  user:null|{
-    name: string|null;
+  user: null | {
+    name: string | null;
     wallet: {
       USD: number,
-      GBP:number
-    }|null;
+      BTC: number
+    } | null;
   },
   token: string | null;
   updateUser: Function;

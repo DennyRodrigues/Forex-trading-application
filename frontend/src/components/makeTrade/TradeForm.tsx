@@ -16,12 +16,12 @@ export const TradeForm = (props: any) => {
 
 
 
-  // It's necessary to invert the exchange rate depending if the user wants to exchange USD -> GBP or GBP ->USD
+  // It's necessary to invert the exchange rate depending if the user wants to exchange USD -> BTC or BTC ->USD
   let exchangeRate: number;
   if (entrySymbol === "USD") {
     exchangeRate = 1 / webSocketRate;
   }
-  if (entrySymbol === "GBP") {
+  if (entrySymbol === "BTC") {
     exchangeRate = webSocketRate;
   }
 
@@ -74,8 +74,6 @@ export const TradeForm = (props: any) => {
           name="value"
           onChange={props.changeHandler}
           value={entryAmount}
-          min="0"
-          max="5000"
         />
         {isInvalid ? (
           <p className="error">Not able to make trade</p>

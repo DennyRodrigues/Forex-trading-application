@@ -35,7 +35,7 @@ exports.registerUser = asyncHandler(async (req: Request, res: Response) => {
       email: email,
       wallet: {
         USD: 5000,
-        GBP: 5000,
+        BTC: 5000,
       },
     });
   } else {
@@ -48,7 +48,6 @@ exports.registerUser = asyncHandler(async (req: Request, res: Response) => {
 exports.loginUser = asyncHandler(async (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
-
 
   const user = await User.findOne({ email });
 

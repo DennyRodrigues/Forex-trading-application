@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const AuthProvider = (props: any) => {
   const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<{ name: string; wallet: { USD: number, GBP: number } } | null>(
+  const [user, setUser] = useState<{ name: string; wallet: { USD: number, BTC: number } } | null>(
     null
   );
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const AuthProvider = (props: any) => {
     token: string;
     wallet: {
       USD: number,
-      GBP: number,
+      BTC: number,
     };
   }) => {
     setToken(response.token);

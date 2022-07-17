@@ -3,12 +3,12 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import  user from '@testing-library/user-event'
+import user from '@testing-library/user-event'
 import { MakeTrade } from "../components/makeTrade/MakeTrade";
 import React from "react"
 
-let realUseContext:any;
-let useContextMock:any;
+let realUseContext: any;
+let useContextMock: any;
 // Setup mock
 beforeEach(() => {
   realUseContext = React.useContext;
@@ -60,7 +60,7 @@ describe("test Make Trade component", () => {
 
     const { rerender } = render(<MakeTrade exitSymbol="USD"></MakeTrade>);
 
-  
+
     const input = screen.getByPlaceholderText("entry amount", { exact: false });
     const calculation = screen.getByTestId("calculation", { exact: false });
 
@@ -69,10 +69,10 @@ describe("test Make Trade component", () => {
       expect(calculation).toHaveTextContent("10 USD");
     });
 
-    rerender(<MakeTrade exitSymbol={"GBP"}></MakeTrade>);
-    
+    rerender(<MakeTrade exitSymbol={"BTC"}></MakeTrade>);
+
     await waitFor(() => {
-      expect(calculation).toHaveTextContent("2.5 GBP");
+      expect(calculation).toHaveTextContent("2.5 BTC");
     });
 
   });

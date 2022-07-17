@@ -8,10 +8,7 @@ export const MakeTrade = (props:any) => {
   const [entryAmount, setEntryAmount] = useState(0);
   function changeHandler(e: ChangeEvent<HTMLInputElement>) {
 
-    // Keep the trade value between 0 and 5000
-    let { value, min, max } = e.target;
-
-    let newValue = Math.max(Number(min), Math.min(Number(max), Number(value)));
+    let newValue = Number(e.target.value);
 
     setEntryAmount(newValue);
   }
