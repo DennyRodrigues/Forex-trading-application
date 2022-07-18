@@ -26,7 +26,7 @@ export const startWebScocketServer = () => {
   // Start external API socket
   const connectExternalAPI = () => {
     const tradeSocket = new ws(
-      "wss://ws.twelvedata.com/v1/quotes/price?apikey=49b6a79dac694cd0900ab8d8692e367a"
+      `wss://ws.twelvedata.com/v1/quotes/price?apikey=${process.env.API_KEY}`
     );
 
     // Subscribe message to start getting values

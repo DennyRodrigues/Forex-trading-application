@@ -11,9 +11,7 @@ export const WebSocketProvider = (props: any) => {
 
   useEffect(() => {
     const socket = io(socketUrl)
-    console.info(socket)
     socket.on("message", (data) => {
-      console.info(data)
       setExchangeRate(Number(data));
     });
   }, []);
