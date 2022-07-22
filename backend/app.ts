@@ -3,7 +3,7 @@ import cors  from "cors";
 import { tradeRouter }  from "./routes/tradeRouter";
 import { userRouter }  from "./routes/userRouter";
 import {errorMiddleware}  from "./middleware/errorMiddleware";
-
+import path from "path";
 
 export const app = express();
 
@@ -15,7 +15,14 @@ app.use(cors());
 app.use(express.json());
 
 
-// ROUTES
+app.use(express.static(path.join(__dirname, "..", "..", "frontend", "build")));
+app.get('*', (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "..", "..", "frontend", "build", "index.html")
+  );
+})
+
+// APIS
 // POST trade to make a trade, or GET to receive all trades back
 app.use("/api/v1/trades", tradeRouter);
 

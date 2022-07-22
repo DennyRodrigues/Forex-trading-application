@@ -1,6 +1,11 @@
-{"compilerOptions":{
-  "esModuleInterop":true
-},
-  "files": [
-        "./types/custom.request.d.ts"
-    ]}
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "ES2016",
+    "module": "commonjs",
+    "outDir": "./build"
+  },
+  "include": ["./"],
+
+  "files": ["./types/custom.request.d.ts"]
+}
