@@ -15,13 +15,6 @@ app.use(cors());
 app.use(express.json());
 
 
-app.use(express.static(path.join(__dirname, "..", "..", "frontend", "build")));
-app.get('*', (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "..", "..", "frontend", "build", "index.html")
-  );
-})
-
 // APIS
 // POST trade to make a trade, or GET to receive all trades back
 app.use("/api/v1/trades", tradeRouter);
@@ -29,6 +22,11 @@ app.use("/api/v1/trades", tradeRouter);
 // /Register to register a new user, /login to receive a token back and /me to get user information
 app.use("/api/v1/users", userRouter);
 
+
+app.use(express.static(path.join(__dirname, "..", "frontend", "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "frontend", "build", "index.html"));
+});
 
 // Middlewares
 // Handle error
