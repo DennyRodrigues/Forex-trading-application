@@ -6,6 +6,7 @@
     "outDir": "./build"
   },
   "include": ["./"],
+  "exclude": ["__test__"],
 
   "files": ["./types/custom.request.d.ts"]
 }
