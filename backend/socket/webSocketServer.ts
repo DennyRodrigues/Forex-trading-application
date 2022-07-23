@@ -7,7 +7,7 @@ import { parseData } from "../helpers/parseExternalDate";
 import { Server } from "socket.io";
 
 export const startWebScocketServer = () => {
-  const port = process.env.PORT_2;
+  const port = process.env.PORT;
 
   //Start the backend server socket
   const app = express();
