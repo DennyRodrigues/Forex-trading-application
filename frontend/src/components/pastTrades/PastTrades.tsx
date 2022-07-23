@@ -10,7 +10,7 @@ export const PastTrades = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    fetch(`http://localhost:${process.env.REACT_APP_API_PORT}/api/v1/trades`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/trades`, {
       method: "get",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -15,7 +15,7 @@ export const LoginForm = (props: any) => {
   // The form will submit using fetch
   function submitFormHandler(e: any) {
     e.preventDefault();
-    fetch(`http://localhost:${process.env.REACT_APP_API_PORT}/api/v1/users/login`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/login`, {
       method: "post",
       headers: {
         "Content-type": "application/json",

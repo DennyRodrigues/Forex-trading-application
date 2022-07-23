@@ -15,7 +15,7 @@ export const RegisterForm = () => {
   function submitFormHandler(e: any) {
     setIsInvalid(false)
     e.preventDefault();
-    fetch(`http://localhost:${process.env.REACT_APP_API_PORT}/api/v1/users/register`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/register`, {
       method: "post",
       headers: {
         "Content-type": "application/json",

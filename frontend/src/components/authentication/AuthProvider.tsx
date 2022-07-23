@@ -27,7 +27,7 @@ export const AuthProvider = (props: any) => {
   };
 
   const updateUser = () => {
-    fetch(`http://localhost:${process.env.REACT_APP_API_PORT}/api/v1/users/me`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/me`, {
       method: "get",
       headers: {
         Authorization: `Bearer ${token}`,
