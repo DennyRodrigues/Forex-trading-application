@@ -1,6 +1,10 @@
 {
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
-    "heroku-prebuild": "cd app && npm install && npm run build && cd .. && cd backend && npm install && npm run build",
+    "heroku-prebuild": "cd frontend && npm install && npm run build && cd .. && cd backend && npm install && npm run build",
     "start": "cd backend && npm start"
   }
 }
