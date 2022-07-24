@@ -4,7 +4,7 @@
   "description": "Forex trading application to make mock trades. It uses MERN with TypeScript and Jest for testing.",
   "main": "server.ts",
   "scripts": {
-    "dev": "nodemon server.ts",
+    "dev": "NODE_ENV=development nodemon server.ts",
     "start": "node build/server.js",
     "build": "tsc",
     "postinstall": "npm run build",
