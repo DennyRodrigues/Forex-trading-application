@@ -2,8 +2,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useContext, useState } from "react";
-import { AuthContext } from "../authentication/AuthContext";
-import WebSocketContext from "../socketcontext/WebSocketContext";
+import { AuthContext } from "../../contexts/authentication/AuthContext";
+import WebSocketContext from "../../contexts/socketcontext/WebSocketContext";
 
 export const TradeForm = (props: any) => {
   const token = useContext(AuthContext)?.token;

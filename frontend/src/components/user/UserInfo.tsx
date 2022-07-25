@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Dropdown } from "react-bootstrap";
-import { AuthContext } from "../authentication/AuthContext";
+import { AuthContext } from "../../contexts/authentication/AuthContext";
 
 export const UserInfo = () => {
   const user = useContext(AuthContext)?.user;

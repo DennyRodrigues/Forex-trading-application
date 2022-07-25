@@ -1,7 +1,7 @@
-import { RequireAuth } from "../authentication/RequireAuth";
-import { ExchangeRate } from "../exchangeRate/ExchangeRate";
-import { WebSocketProvider } from "../socketcontext/WebSocketProvider";
-import { MakeTrade } from "../makeTrade/MakeTrade";
+import { RequireAuth } from "../contexts/authentication/RequireAuth";
+import { ExchangeRate } from "../components/exchangeRate/ExchangeRate";
+import { WebSocketProvider } from "../contexts/socketcontext/WebSocketProvider";
+import { MakeTrade } from "../components/makeTrade/MakeTrade";
 
 
 export const Home = () => {

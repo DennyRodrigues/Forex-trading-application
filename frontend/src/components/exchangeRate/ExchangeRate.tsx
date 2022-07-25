@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import WebSocketContext from "../socketcontext/WebSocketContext";
+import WebSocketContext from "../../contexts/socketcontext/WebSocketContext";
 
 export const ExchangeRate = () => {
   const exchangeRate = useContext(WebSocketContext);

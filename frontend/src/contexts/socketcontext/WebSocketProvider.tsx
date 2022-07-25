@@ -14,7 +14,7 @@ export const WebSocketProvider = (props: any) => {
     socket.on("message", (data) => {
       setExchangeRate(Number(data));
     });
-  }, []);
+  }, [socketUrl]);
 
   return (
     <WebSocketContext.Provider value={exchangeRate}>
