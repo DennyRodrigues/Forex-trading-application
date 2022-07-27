@@ -50,7 +50,7 @@ export const LoginForm = (props: any) => {
         <Form.Control
           required
           type="email"
-          placeholder="Email"
+          placeholder="example@gmail.com"
           name="value"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
@@ -60,7 +60,7 @@ export const LoginForm = (props: any) => {
         <Form.Control
           required
           type="password"
-          placeholder="password"
+          placeholder="01234"
           name="value"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
