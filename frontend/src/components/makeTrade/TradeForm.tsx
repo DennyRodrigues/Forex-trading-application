@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/authentication/AuthContext";
-import WebSocketContext from "../../contexts/socketcontext/WebSocketContext";
+import { useExchangeRates } from "../../contexts/socketcontext/WebSocketProvider";
 
 export const TradeForm = (props: any) => {
   const token = useContext(AuthContext)?.token;
@@ -11,13 +11,15 @@ export const TradeForm = (props: any) => {
 
   const entrySymbol = props.entrySymbol;
   const exitSymbol = props.exitSymbol;
-  const webSocketRate = useContext(WebSocketContext);
+  const webSocketRate = useExchangeRates();
   const [isInvalid, setIsInvalid] = useState(false);
+
+  console.info(webSocketRate)
 
 
 
   // It's necessary to invert the exchange rate depending if the user wants to exchange JPY -> USD or USD ->JPY
-  let exchangeRate: number;
+  let exchangeRate = 0;
   if (entrySymbol === "JPY") {
     exchangeRate = 1 / webSocketRate;
   }

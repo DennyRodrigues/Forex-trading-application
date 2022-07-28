@@ -1,24 +1,55 @@
-import WebSocketContext from "./WebSocketContext";
-import { useState, useEffect } from "react";
-import io from "socket.io-client";
 
+import { useState, useEffect, useMemo, useContext } from "react";
+import io from "socket.io-client";
+import { createContext } from "react";
+import { exchangeRate } from "../../types/Trade";
+
+const WebSocketContext = createContext<any>({});
 
 // The context will connect to the websocket on backend
 export const WebSocketProvider = (props: any) => {
   const socketUrl = process.env.REACT_APP_SOCKET_URL || '';
-  // Exchange rate that will be passed 
-  const [exchangeRate, setExchangeRate] = useState(0);
+
+  // The Exchange rate will use the USD as the base currency. They will be USD/BTC, USD/EUR. USD/JPY; 
+  const [ratesForUSD, setRatesForUSD] = useState<exchangeRate[]>([
+    { symbol: 'BTC', value: 0 },
+    { symbol: 'EUR', value: 0 },
+    { symbol: 'JPY', value: 0 },
+  ]);
+
 
   useEffect(() => {
     const socket = io(socketUrl)
     socket.on("message", (data) => {
-      setExchangeRate(Number(data));
+      if (data) {
+        setRatesForUSD(prev => {
+          return prev.map((rate) => {
+            if (rate.symbol === data.symbol) {
+              return data
+            }
+            return rate
+          }
+          )
+        })
+      }
+
     });
   }, [socketUrl]);
 
+  const value = useMemo(() => ({
+    ratesForUSD
+  }), [ratesForUSD])
+
+
   return (
-    <WebSocketContext.Provider value={exchangeRate}>
+    <WebSocketContext.Provider value={value}>
       {props.children}
     </WebSocketContext.Provider>
   );
 };
+
+// Hooks
+export const useExchangeRates = () => {
+  const contextValues = useContext(WebSocketContext);
+  return contextValues.ratesForUSD;
+}

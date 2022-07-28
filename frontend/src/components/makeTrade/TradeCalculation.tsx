@@ -1,12 +1,11 @@
 
-import { useContext } from "react";
-import WebSocketContext from "../../contexts/socketcontext/WebSocketContext";
+import { useExchangeRates } from "../../contexts/socketcontext/WebSocketProvider";
 
 export const TradeCalculation = (props: any) => {
-  const exchangeRate = useContext(WebSocketContext)
+  const exchangeRate = useExchangeRates();
   const exitSymbol = props.exitSymbol;
   const entryAmount = props.entryAmount
-  let calculation: number | null = null;
+  let calculation = 0;
 
   // The calculation will change depeding if the user wants to trade JPY to USD or USD to JPY. 
   // Show only two decimal digits of the final calculation

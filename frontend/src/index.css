@@ -1,5 +1,10 @@
 *{
-  font-size: 22px;
+  font-size: 1.8rem;
+}
+html {
+  /* This defines what 1rem is */
+   font-size: 100%
+   /* 1 rem = 16px */
 }
 button{
   font-size: 20px;
