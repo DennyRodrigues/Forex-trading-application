@@ -1,22 +1,28 @@
 import "bootstrap/dist/css/bootstrap.css";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import styled from 'styled-components'
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/authentication/AuthContext";
 import { useExchangeRates } from "../../contexts/socketcontext/WebSocketProvider";
+import { exchangeRate } from "../../types/Trade";
+import { TradeCalculation } from "./TradeCalculation";
+import { TradeOutput } from "./TradeOutput";
+import { TradeInput } from "./TradeInput";
 
 export const TradeForm = (props: any) => {
   const token = useContext(AuthContext)?.token;
   const updateUser = useContext(AuthContext)?.updateUser;
 
+  const entryAmount = props.entryAmount;
   const entrySymbol = props.entrySymbol;
   const exitSymbol = props.exitSymbol;
   const webSocketRate = useExchangeRates();
   const [isInvalid, setIsInvalid] = useState(false);
 
-  console.info(webSocketRate)
+  // States
+  const [selectedExchange, setSelectedExchange] = useState("BTC")
 
-
+  const exchangeOptions = ["BTC", "EUR", "JPY"];
 
   // It's necessary to invert the exchange rate depending if the user wants to exchange JPY -> USD or USD ->JPY
   let exchangeRate = 0;
@@ -27,7 +33,7 @@ export const TradeForm = (props: any) => {
     exchangeRate = webSocketRate;
   }
 
-  const entryAmount = props.entryAmount;
+
   // The form will submit using fetch
   function onSubmitHandler(e: any) {
     e.preventDefault();
@@ -65,33 +71,62 @@ export const TradeForm = (props: any) => {
       });
   }
   return (
-    <Form onSubmit={onSubmitHandler} className="trade-form" role="form">
-      <Form.Group>
-        <Form.Label>
-          {entrySymbol} to {exitSymbol}
-        </Form.Label>
-        <Form.Control
-          type="number"
-          placeholder="entry amount"
-          name="value"
-          onChange={props.changeHandler}
-          value={entryAmount}
-          min="0"
-          max="500000"
-        />
-        {isInvalid ? (
-          <p className="error">Not able to make trade</p>
-        ) : (
-          <p className="error"></p>
-        )}
-        <Button
-          className="w-100 fs-4 mt-1 p-0 button"
-          type="submit"
-          role="submitButton"
-        >
-          Trade
-        </Button>
-      </Form.Group>
-    </Form>
+    <StyledForm onSubmit={onSubmitHandler} className="trade-form" role="form">
+      <RowContainer>
+        <InsideRowContainer>
+          <TradeInput entrySymbol={entrySymbol} onChange={props.changeHandler} value={entryAmount} /> 
+        </InsideRowContainer>
+
+        <InsideRowContainer>
+          <TradeOutput exitAmount={entryAmount * webSocketRate.find((rate: exchangeRate) => rate.symbol === selectedExchange).value}
+            setSelectedExchange={setSelectedExchange}
+            selectedExchange={selectedExchange}
+            exchangeOptions={exchangeOptions}
+            entryAmount={entryAmount}
+          />
+        </InsideRowContainer>
+        
+      </RowContainer>
+
+      {isInvalid ? (
+        <p className="error">Not able to make trade</p>
+      ) : (
+        <p className="error"></p>
+      )}
+      <Button
+        className="w-100 fs-4 mt-1 p-0 button"
+        type="submit"
+        role="submitButton"
+      >
+        Trade
+      </Button>
+    </StyledForm>
   );
 };
+
+const StyledForm = styled.form`
+`
+
+const RowContainer = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+gap: 2rem;
+width: 32rem;
+`
+const InsideRowContainer = styled.div`
+flex:1;
+
+`
+
+const StyledSelectInput = styled.select`
+display: flex;
+
+`
+
+const StyledEqualSymbol = styled.p`
+margin-bottom: 0;
+font-weight: 700;
+  
+`

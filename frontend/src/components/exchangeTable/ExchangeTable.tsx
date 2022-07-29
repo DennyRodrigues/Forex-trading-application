@@ -20,13 +20,13 @@ export const ExchangeTable = () => {
             </RightContainer>
             <LeftContainer>
             <StyledText>
-                {rate.value ? rate.value.toFixed(16) : "loading..."}
+                {rate.value ? rate.value.toFixed(10) : "loading..."}
             </StyledText>
             </LeftContainer>
           </RowContainer>
         )
       })}
-      <StyledLabel>Each values shows the exchange for 1 USD (United States dollar)</StyledLabel>
+      <StyledLabel>Each value shows the exchange for 1 USD (United States dollar)</StyledLabel>
 
   </Container>
   )
