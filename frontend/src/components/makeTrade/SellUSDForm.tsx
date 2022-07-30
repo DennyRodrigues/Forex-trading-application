@@ -25,6 +25,7 @@ export const SellUSDForm = (props: any) => {
   const [selectedExchangeSymbol, setSelectedExchangeSymbol] = useState("BTC");
   const [selectedExchangeRate, setSelectedExchangeRate] = useState<number>(0);
   const [entryAmount, setEntryAmount] = useState<string | number>(0);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   // Consts
   const exchangeOptions = ["BTC", "EUR", "JPY"];
@@ -65,7 +66,7 @@ export const SellUSDForm = (props: any) => {
           }
         } else {
           setIsInvalid(true);
-          console.info(res)
+          setErrorMessage(res.message)
         }
       })
       .catch((e) => {
@@ -103,7 +104,7 @@ export const SellUSDForm = (props: any) => {
       </RowContainer>
 
       {isInvalid ? (
-        <p className="error">Not able to make trade</p>
+        <p className="error">{errorMessage ? errorMessage : "Not able to make trade"}</p>
       ) : (
         <p className="error"></p>
       )}

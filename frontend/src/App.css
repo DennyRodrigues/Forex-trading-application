@@ -131,7 +131,6 @@ color: black !important;
 }
 /* ERROR */
 .error{
-  height: 40px;
   margin-bottom: 0px;
   color: #d81d1d;
 }
