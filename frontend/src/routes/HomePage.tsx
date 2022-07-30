@@ -1,7 +1,8 @@
 import { RequireAuth } from "../contexts/authentication/RequireAuth";
 import { WebSocketProvider } from "../contexts/socketcontext/WebSocketProvider";
 import { MakeTrade } from "../components/makeTrade/MakeTrade";
-import { ExchangeTable } from "../components/exchangeTable/ExchangeTable";
+import { ExchangeRatesTable } from "../components/ExchangeRatesTable/ExchangeRatesTable";
+
 
 
 export const Home = () => {
@@ -9,9 +10,8 @@ export const Home = () => {
     <RequireAuth>
       <WebSocketProvider>
         <div className="container Home">
-          <ExchangeTable/>
+          <ExchangeRatesTable />
           <MakeTrade entrySymbol="USD" exitSymbol="JPY" />
-          <MakeTrade entrySymbol="JPY" exitSymbol="USD" />
         </div>
       </WebSocketProvider>
     </RequireAuth>

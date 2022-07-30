@@ -3,7 +3,7 @@ import { useExchangeRates } from '../../contexts/socketcontext/WebSocketProvider
 import { ExchangeRate } from '../../types/Trade';
 
 
-export const ExchangeTable = () => {
+export const ExchangeRatesTable = () => {
   const exchangeRates = useExchangeRates()
 
 
@@ -12,23 +12,23 @@ export const ExchangeTable = () => {
       <StyledTitle>Exchange rates </StyledTitle>
       {exchangeRates.map((rate: ExchangeRate) => {
         return (
-        <RowContainer>
+          <RowContainer>
             <RightContainer>
               <StyledText>
                 {rate.symbol}:
               </StyledText>
             </RightContainer>
             <LeftContainer>
-            <StyledText>
+              <StyledText>
                 {rate.value ? rate.value.toFixed(10) : "loading..."}
-            </StyledText>
+              </StyledText>
             </LeftContainer>
           </RowContainer>
         )
       })}
       <StyledLabel>Each value shows the exchange for 1 USD (United States dollar)</StyledLabel>
 
-  </Container>
+    </Container>
   )
 }
 
