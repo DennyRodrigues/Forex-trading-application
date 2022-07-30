@@ -5,17 +5,17 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/authentication/AuthContext";
 import { useExchangeRates } from "../../contexts/socketcontext/WebSocketProvider";
 import { ExchangeRate } from "../../types/Trade";
-import { TradeCalculation } from "./TradeCalculation";
 import { TradeOutput } from "./TradeOutput";
 import { TradeInput } from "./TradeInput";
+import { SelectCurrency } from "./SelectCurrency/SelectCurrency";
+import { TradeCalculation } from "./TradeCalculation";
 
-export const TradeForm = (props: any) => {
+export const BuyUSDForm = (props: any) => {
   // Contexts
   const token = useContext(AuthContext)?.token;
   const updateUser = useContext(AuthContext)?.updateUser;
 
   // Props
-  const entryAmount = props.entryAmount;
   const entrySymbol = props.entrySymbol;
 
   // Hooks 
@@ -25,6 +25,9 @@ export const TradeForm = (props: any) => {
   // States
   const [selectedExchangeSymbol, setSelectedExchangeSymbol] = useState("BTC");
   const [selectedExchangeRate, setSelectedExchangeRate] = useState<number>(0);
+  const [entryAmount, setEntryAmount] = useState<string | number>(0);
+  const [exitAmount, setexitAmount] = useState<number>(0);
+
 
   // Consts
   const exchangeOptions = ["BTC", "EUR", "JPY"];
@@ -32,9 +35,14 @@ export const TradeForm = (props: any) => {
   // Effects  Update exchange rate
   useEffect(() => {
     setSelectedExchangeRate(webSocketRate.find((rate: ExchangeRate) => rate.symbol === selectedExchangeSymbol).value)
-    console.info(selectedExchangeRate)
-  }, [selectedExchangeSymbol])
-  
+
+  }, [selectedExchangeSymbol, entryAmount, webSocketRate])
+
+   // Effects  Update exit Amount
+  useEffect(() => {
+    setexitAmount(Number(entryAmount) * (1 / selectedExchangeRate))
+
+  }, [entryAmount, selectedExchangeRate])
   // Functions
   // The form will submit using fetch
   function onSubmitHandler(e: any) {
@@ -50,9 +58,9 @@ export const TradeForm = (props: any) => {
       },
       body: JSON.stringify({
         date: new Date(),
-        entrySymbol: entrySymbol,
-        exitSymbol: selectedExchangeSymbol,
-        exchangeRate: selectedExchangeRate,
+        entrySymbol: selectedExchangeSymbol,
+        exitSymbol: entrySymbol,
+        exchangeRate: 1/selectedExchangeRate,
         value: entryAmount,
       }),
     })
@@ -65,6 +73,7 @@ export const TradeForm = (props: any) => {
           }
         } else {
           setIsInvalid(true);
+          console.info(res)
         }
       })
       .catch((e) => {
@@ -72,24 +81,40 @@ export const TradeForm = (props: any) => {
         setIsInvalid(true);
       });
   }
+  function changeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+    // Keep the trade value between 0 and 5000
+    const { value, min, max } = e.target;
 
-  
+    let newValue = Math.max(Number(min), Math.min(Number(max), Number
+      (value)));
+
+    setEntryAmount(newValue);
+  }
+
+
   return (
     <StyledForm onSubmit={onSubmitHandler} className="trade-form" role="form">
       <RowContainer>
         <InsideRowContainer>
-          <TradeInput entrySymbol={entrySymbol} onChange={props.changeHandler} value={entryAmount} /> 
+          <SelectCurrency setSelectedExchange={setSelectedExchangeSymbol}
+            selectedExchange={selectedExchangeSymbol}
+            exchangeOptions={exchangeOptions} />
+          <StyledInput
+            type="number"
+            placeholder="entry amount"
+            name="value"
+            onChange={changeHandler}
+            value={entryAmount}
+            max="500000"
+
+          />
         </InsideRowContainer>
 
         <InsideRowContainer>
-          <TradeOutput exitAmount={entryAmount * selectedExchangeRate}
-            setSelectedExchange={setSelectedExchangeSymbol}
-            selectedExchange={selectedExchangeSymbol}
-            exchangeOptions={exchangeOptions}
-            entryAmount={entryAmount}
-          />
+          <StyledLabel>USD</StyledLabel>
+          <TradeCalculation exitAmount={exitAmount} isLoading={Number(entryAmount) > 0 && exitAmount <= 0} />
         </InsideRowContainer>
-        
+
       </RowContainer>
 
       {isInvalid ? (
@@ -120,17 +145,23 @@ gap: 2rem;
 width: 32rem;
 `
 const InsideRowContainer = styled.div`
-flex:1;
-
-`
-
-const StyledSelectInput = styled.select`
 display: flex;
-
+flex-direction: column;
+flex: 1;
+padding: 0 2rem;
 `
-
-const StyledEqualSymbol = styled.p`
+const StyledLabel = styled.p`
 margin-bottom: 0;
-font-weight: 700;
-  
+text-align: center;
+`
+const StyledInput = styled.input`
+border: none;
+width: 11rem;
+margin-top: 0.5rem;
+&:active {
+  outline:none
+}
+&:focus {
+  outline:none
+}
 `

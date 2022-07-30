@@ -1,16 +1,16 @@
 import styled from "styled-components"
 
 interface IProps {
-  value: string;
-  onChange:  () => void;
-  entrySymbol: string;
+  value: string | number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  entrySymbol?: string;
 };
 
 
 export const TradeInput: React.FC<IProps> = ({onChange, value, entrySymbol}) => {
   return (<Container>
     <StyledLabel>
-      {entrySymbol}
+      {entrySymbol && entrySymbol}
     </StyledLabel>
     <StyledInput
       type="number"

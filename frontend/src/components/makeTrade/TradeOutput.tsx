@@ -7,7 +7,7 @@ interface IProps {
   selectedExchange: string;
   setSelectedExchange: React.Dispatch<React.SetStateAction<string>>;
   exitAmount: number;
-  entryAmount: string;
+  entryAmount: string | number;
 };
 
 export const TradeOutput: React.FC<IProps> = ({ exchangeOptions, selectedExchange, setSelectedExchange, exitAmount, entryAmount }) => {
@@ -18,7 +18,7 @@ export const TradeOutput: React.FC<IProps> = ({ exchangeOptions, selectedExchang
       onChange={(e) => setSelectedExchange(e.target.value)}
       title="Exchange Currency"
     >
-      {exchangeOptions.map((option : any) => <StyledOption>{option}</StyledOption>)}
+      {exchangeOptions.map((option : any) => <StyledOption key={option}>{option}</StyledOption>)}
 
     </StyledSelectInput>
       <TradeCalculation exitAmount={exitAmount} isLoading={Number(entryAmount) > 0 && exitAmount <= 0}></TradeCalculation>

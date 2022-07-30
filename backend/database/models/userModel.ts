@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
       BTC: {
         type: Number,
         required: [true, "Please add a USD value"],
-        default: 5000,
+        default: 2,
       },
       EUR: {
         type: Number,

@@ -12,7 +12,7 @@ export const ExchangeRatesTable = () => {
       <StyledTitle>Exchange rates </StyledTitle>
       {exchangeRates.map((rate: ExchangeRate) => {
         return (
-          <RowContainer>
+          <RowContainer key={rate.symbol}>
             <RightContainer>
               <StyledText>
                 {rate.symbol}:
@@ -62,10 +62,10 @@ const RowContainer = styled.div`
   border: 1px solid black;
 
 `
-const StyledText = styled.text`
+const StyledText = styled.p`
   text-align: center;
 `
-const StyledLabel = styled.text`
+const StyledLabel = styled.p`
   text-align: center;
   font-size: 0.8rem;
 `
