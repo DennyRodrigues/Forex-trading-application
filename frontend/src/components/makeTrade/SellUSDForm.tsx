@@ -1,11 +1,10 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Button from "react-bootstrap/Button";
 import styled from 'styled-components'
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/authentication/AuthContext";
 import { useExchangeRates } from "../../contexts/socketcontext/WebSocketProvider";
 import { ExchangeRate } from "../../types/Trade";
-import { TradeCalculation } from "./TradeCalculation";
 import { TradeOutput } from "./TradeOutput";
 import { TradeInput } from "./TradeInput";
 

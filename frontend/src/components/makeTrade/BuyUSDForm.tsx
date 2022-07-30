@@ -5,8 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/authentication/AuthContext";
 import { useExchangeRates } from "../../contexts/socketcontext/WebSocketProvider";
 import { ExchangeRate } from "../../types/Trade";
-import { TradeOutput } from "./TradeOutput";
-import { TradeInput } from "./TradeInput";
 import { SelectCurrency } from "./SelectCurrency/SelectCurrency";
 import { TradeCalculation } from "./TradeCalculation";
 
