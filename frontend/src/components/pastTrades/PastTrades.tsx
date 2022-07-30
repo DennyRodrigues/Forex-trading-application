@@ -1,6 +1,6 @@
 import { useEffect, useContext, useState } from "react";
 import { Table } from "react-bootstrap";
-import { AuthContext } from "../authentication/AuthContext";
+import { AuthContext } from "../../contexts/authentication/AuthContext";
 
 export const PastTrades = () => {
   let token = useContext(AuthContext)?.token;

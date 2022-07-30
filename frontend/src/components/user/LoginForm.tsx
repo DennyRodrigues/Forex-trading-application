@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState, useContext } from "react";
-import { AuthContext } from "../authentication/AuthContext";
+import { AuthContext } from "../../contexts/authentication/AuthContext";
 
 export const LoginForm = (props: any) => {
   const [email, setEmail] = useState("");
@@ -50,7 +50,7 @@ export const LoginForm = (props: any) => {
         <Form.Control
           required
           type="email"
-          placeholder="Email"
+          placeholder="example@gmail.com"
           name="value"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
@@ -60,7 +60,7 @@ export const LoginForm = (props: any) => {
         <Form.Control
           required
           type="password"
-          placeholder="password"
+          placeholder="01234"
           name="value"
           onChange={(e) => setPassword(e.target.value)}
           value={password}

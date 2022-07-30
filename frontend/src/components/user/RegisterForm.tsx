@@ -52,7 +52,7 @@ export const RegisterForm = () => {
         <Form.Control
           required
           type="text"
-          placeholder="Name"
+          placeholder="John"
           name="value"
           onChange={(e) => setName(e.target.value)}
           value={name}
@@ -62,7 +62,7 @@ export const RegisterForm = () => {
         <Form.Control
           required
           type="email"
-          placeholder="Email"
+          placeholder="example@gmail.com"
           name="value"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
@@ -72,7 +72,7 @@ export const RegisterForm = () => {
         <Form.Control
           required
           type="password"
-          placeholder="Passoword"
+          placeholder="01234"
           name="value"
           onChange={(e) => setPassword(e.target.value)}
           value={password}

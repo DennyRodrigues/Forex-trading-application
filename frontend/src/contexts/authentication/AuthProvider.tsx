@@ -1,22 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { useState } from "react";
+import { User, UserContext } from "../../types/User";
 
 export const AuthProvider = (props: any) => {
   const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<{ name: string; wallet: { JPY: number, USD: number } } | null>(
+  const [user, setUser] = useState<UserContext | null>(
     null
   );
   const navigate = useNavigate();
 
-  const handleLogin = (response: {
-    name: string;
-    token: string;
-    wallet: {
-      JPY: number,
-      USD: number,
-    };
-  }) => {
+  const handleLogin = (response: User) => {
     setToken(response.token);
     setUser({ name: response.name, wallet: response.wallet });
     navigate("/", { replace: true });
@@ -33,11 +27,11 @@ export const AuthProvider = (props: any) => {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((res: any) => res.json())
-      .then((res) => {
+      .then((res: Response) => res.json())
+      .then((res: any) => {
         setUser({ name: res.result.name, wallet: res.result.wallet });
       })
-      .catch((e) => console.log(e));
+      .catch((e: Error) => console.log(e));
   };
 
   const value = {
