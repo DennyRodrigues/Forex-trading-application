@@ -11,7 +11,6 @@ interface IProps {
 };
 
 export const TradeOutput: React.FC<IProps> = ({ exchangeOptions, selectedExchange, setSelectedExchange, exitAmount, entryAmount }) => {
-  console.info(Number(entryAmount))
   return (
   <Container>
     <StyledSelectInput

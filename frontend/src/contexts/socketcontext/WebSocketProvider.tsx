@@ -2,7 +2,7 @@
 import { useState, useEffect, useMemo, useContext } from "react";
 import io from "socket.io-client";
 import { createContext } from "react";
-import { exchangeRate } from "../../types/Trade";
+import { ExchangeRate } from "../../types/Trade";
 
 const WebSocketContext = createContext<any>({});
 
@@ -11,7 +11,7 @@ export const WebSocketProvider = (props: any) => {
   const socketUrl = process.env.REACT_APP_SOCKET_URL || '';
 
   // The Exchange rate will use the USD as the base currency. They will be USD/BTC, USD/EUR. USD/JPY; 
-  const [ratesForUSD, setRatesForUSD] = useState<exchangeRate[]>([
+  const [ratesForUSD, setRatesForUSD] = useState<ExchangeRate[]>([
     { symbol: 'BTC', value: 0 },
     { symbol: 'EUR', value: 0 },
     { symbol: 'JPY', value: 0 },

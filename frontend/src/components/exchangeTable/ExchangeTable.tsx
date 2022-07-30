@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useExchangeRates } from '../../contexts/socketcontext/WebSocketProvider';
-import { exchangeRate } from '../../types/Trade';
+import { ExchangeRate } from '../../types/Trade';
 
 
 export const ExchangeTable = () => {
@@ -10,7 +10,7 @@ export const ExchangeTable = () => {
   return (
     <Container>
       <StyledTitle>Exchange rates </StyledTitle>
-      {exchangeRates.map((rate : exchangeRate) => {
+      {exchangeRates.map((rate: ExchangeRate) => {
         return (
         <RowContainer>
             <RightContainer>

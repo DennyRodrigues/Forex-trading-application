@@ -1,39 +1,41 @@
 import "bootstrap/dist/css/bootstrap.css";
 import Button from "react-bootstrap/Button";
 import styled from 'styled-components'
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/authentication/AuthContext";
 import { useExchangeRates } from "../../contexts/socketcontext/WebSocketProvider";
-import { exchangeRate } from "../../types/Trade";
+import { ExchangeRate } from "../../types/Trade";
 import { TradeCalculation } from "./TradeCalculation";
 import { TradeOutput } from "./TradeOutput";
 import { TradeInput } from "./TradeInput";
 
 export const TradeForm = (props: any) => {
+  // Contexts
   const token = useContext(AuthContext)?.token;
   const updateUser = useContext(AuthContext)?.updateUser;
 
+  // Props
   const entryAmount = props.entryAmount;
   const entrySymbol = props.entrySymbol;
-  const exitSymbol = props.exitSymbol;
+
+  // Hooks 
   const webSocketRate = useExchangeRates();
   const [isInvalid, setIsInvalid] = useState(false);
 
   // States
-  const [selectedExchange, setSelectedExchange] = useState("BTC")
+  const [selectedExchangeSymbol, setSelectedExchangeSymbol] = useState("BTC");
+  const [selectedExchangeRate, setSelectedExchangeRate] = useState<number>(0);
 
+  // Consts
   const exchangeOptions = ["BTC", "EUR", "JPY"];
 
-  // It's necessary to invert the exchange rate depending if the user wants to exchange JPY -> USD or USD ->JPY
-  let exchangeRate = 0;
-  if (entrySymbol === "JPY") {
-    exchangeRate = 1 / webSocketRate;
-  }
-  if (entrySymbol === "USD") {
-    exchangeRate = webSocketRate;
-  }
-
-
+  // Effects  Update exchange rate
+  useEffect(() => {
+    setSelectedExchangeRate(webSocketRate.find((rate: ExchangeRate) => rate.symbol === selectedExchangeSymbol).value)
+    console.info(selectedExchangeRate)
+  }, [selectedExchangeSymbol])
+  
+  // Functions
   // The form will submit using fetch
   function onSubmitHandler(e: any) {
     e.preventDefault();
@@ -49,8 +51,8 @@ export const TradeForm = (props: any) => {
       body: JSON.stringify({
         date: new Date(),
         entrySymbol: entrySymbol,
-        exitSymbol: exitSymbol,
-        exchangeRate: exchangeRate,
+        exitSymbol: selectedExchangeSymbol,
+        exchangeRate: selectedExchangeRate,
         value: entryAmount,
       }),
     })
@@ -70,6 +72,8 @@ export const TradeForm = (props: any) => {
         setIsInvalid(true);
       });
   }
+
+  
   return (
     <StyledForm onSubmit={onSubmitHandler} className="trade-form" role="form">
       <RowContainer>
@@ -78,9 +82,9 @@ export const TradeForm = (props: any) => {
         </InsideRowContainer>
 
         <InsideRowContainer>
-          <TradeOutput exitAmount={entryAmount * webSocketRate.find((rate: exchangeRate) => rate.symbol === selectedExchange).value}
-            setSelectedExchange={setSelectedExchange}
-            selectedExchange={selectedExchange}
+          <TradeOutput exitAmount={entryAmount * selectedExchangeRate}
+            setSelectedExchange={setSelectedExchangeSymbol}
+            selectedExchange={selectedExchangeSymbol}
             exchangeOptions={exchangeOptions}
             entryAmount={entryAmount}
           />
