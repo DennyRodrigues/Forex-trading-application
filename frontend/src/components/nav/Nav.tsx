@@ -23,13 +23,6 @@ export const Nav = (props: any) => {
         <li className="nav-item nav-user-info">
           <UserInfo />
         </li>
-        <li className="nav-item log-off">
-          {onLogout && (
-            <button className="btn nav-text " onClick={() => onLogout()}>
-              Log off
-            </button>
-          )}
-        </li>
       </ul>
     );
   } else {
