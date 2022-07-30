@@ -54,7 +54,7 @@ export const RegisterForm = () => {
           type="text"
           placeholder="John"
           name="value"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
           value={name}
           autoComplete="off"
         />
@@ -64,7 +64,7 @@ export const RegisterForm = () => {
           type="email"
           placeholder="example@gmail.com"
           name="value"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           value={email}
           autoComplete="off"
         />
@@ -74,7 +74,7 @@ export const RegisterForm = () => {
           type="password"
           placeholder="01234"
           name="value"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           value={password}
         />
         {isInvalid && <p className="error" data-testId>Invalid Request</p>}

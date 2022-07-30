@@ -15,10 +15,10 @@ export const TradeOutput: React.FC<IProps> = ({ exchangeOptions, selectedExchang
   <Container>
     <StyledSelectInput
       value={selectedExchange}
-      onChange={(e) => setSelectedExchange(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSelectedExchange(e.target.value)}
       title="Exchange Currency"
     >
-      {exchangeOptions.map((option : any) => <StyledOption key={option}>{option}</StyledOption>)}
+      {exchangeOptions.map((option : string) => <StyledOption key={option}>{option}</StyledOption>)}
 
     </StyledSelectInput>
       <TradeCalculation exitAmount={exitAmount} isLoading={Number(entryAmount) > 0 && exitAmount <= 0}></TradeCalculation>

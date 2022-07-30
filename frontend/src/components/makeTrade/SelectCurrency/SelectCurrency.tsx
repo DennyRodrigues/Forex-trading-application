@@ -11,7 +11,7 @@ export const SelectCurrency: React.FC<IProps> = ({ exchangeOptions, selectedExch
   return (
       <StyledSelectInput
         value={selectedExchange}
-        onChange={(e) => setSelectedExchange(e.target.value)}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSelectedExchange(e.target.value)}
         title="Exchange Currency"
       >
         {exchangeOptions.map((option: any) => <StyledOption key={option}>{option}</StyledOption>)}

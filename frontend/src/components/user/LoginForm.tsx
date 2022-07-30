@@ -52,7 +52,7 @@ export const LoginForm = (props: any) => {
           type="email"
           placeholder="example@gmail.com"
           name="value"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           value={email}
           autoComplete="off"
         />
@@ -62,7 +62,7 @@ export const LoginForm = (props: any) => {
           type="password"
           placeholder="01234"
           name="value"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           value={password}
           autoComplete="off"
         />
