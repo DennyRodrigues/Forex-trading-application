@@ -25,3 +25,38 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media (max-width: 1000px){
+    html {
+  /* This defines what 1rem is */
+   font-size: 90%
+   /* 1 rem = 16px */
+
+  }
+}
+
+@media (max-width: 768px){
+    html {
+  /* This defines what 1rem is */
+   font-size: 75%
+   /* 1 rem = 16px */
+
+  }
+}
+@media (max-width: 500px){
+    html {
+  /* This defines what 1rem is */
+   font-size: 65%
+   /* 1 rem = 16px */
+
+  }
+}
+
+@media (max-width: 400px){
+    html {
+  /* This defines what 1rem is */
+   font-size: 60%
+   /* 1 rem = 16px */
+
+  }
+}

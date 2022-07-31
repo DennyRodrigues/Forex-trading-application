@@ -128,6 +128,7 @@ justify-content: center;
 align-items: center;
 gap: 2rem;
 width: 32rem;
+margin-bottom: 1rem;
 `
 const InsideRowContainer = styled.div`
 flex:1;
