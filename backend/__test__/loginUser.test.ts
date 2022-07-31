@@ -1,4 +1,3 @@
-import encodings from "../../node_modules/iconv-lite/encodings";
 import request from "supertest";
 import { app } from "../app";
 import { connectDB } from "../database/connectDB";

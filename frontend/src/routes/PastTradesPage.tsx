@@ -1,5 +1,5 @@
-import { RequireAuth } from "../authentication/RequireAuth";
-import { PastTrades } from "../pastTrades/PastTrades";
+import { RequireAuth } from "../contexts/authentication/RequireAuth";
+import { PastTrades } from "../components/pastTrades/PastTrades";
 
 export const PastTradesPage = () => {
   return (

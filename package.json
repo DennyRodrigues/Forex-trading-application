@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.x"
+  },
+  "scripts": {
+    "heroku-prebuild": "cd frontend && npm install && npm run build && cd .. && cd backend && npm install && npm run build",
+    "start": "cd backend && npm start"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.25"
+  }
+}

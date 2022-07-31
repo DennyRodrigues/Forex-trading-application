@@ -4,7 +4,10 @@
   "description": "Forex trading application to make mock trades. It uses MERN with TypeScript and Jest for testing.",
   "main": "server.ts",
   "scripts": {
-    "start": "nodemon server.ts",
+    "dev": "NODE_ENV=development nodemon server.ts",
+    "start": "node build/server.js",
+    "build": "tsc",
+    "postinstall": "npm run build",
     "test": "Jest"
   },
   "repository": {
@@ -42,6 +45,7 @@
     "@types/bcrypt": "^5.0.0",
     "@types/jest": "^27.4.1",
     "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "^18.0.6",
     "@types/supertest": "^2.0.12",
     "@types/ws": "^8.5.3",
     "jest": "^27.5.1",

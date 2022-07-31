@@ -1,5 +1,5 @@
 .container{
-  padding: 64px 0px;
+  padding: 8rem 0px;
 
   display: flex;
   flex-direction: column;
@@ -12,31 +12,15 @@
 /* Trade */
 
 .trade-container{
- display: grid;
- grid-template-columns: 300px 40px 260px;
- align-items: center;
-  gap:20px;
+  padding: 2rem;
 
-  margin-bottom: 72px;
+  align-items: center;
+  gap:1rem;
+
+  margin-bottom: 5rem;
   flex-wrap: nowrap;
   background-color: rgb(241, 230, 230);
-  padding: 20px;
   border-radius: 2px;
-}
-.trade-equal{
-  font-size: 30px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 58px;
-}
-.Calculation{
-  padding: 10px 20px;
-  background-color: white;
-  white-space: nowrap;
-  margin-bottom: 48px;
-  border: 1px solid #ced4da;;
 }
 
 
@@ -64,6 +48,8 @@
   font-size: 24px;
   background-color: rgb(241, 230, 230);
   padding: 10px 20px;
+  position: fixed;
+  width: 100%;
 }
 
 .log-off{
@@ -128,7 +114,6 @@ color: black !important;
 }
 /* ERROR */
 .error{
-  height: 40px;
   margin-bottom: 0px;
   color: #d81d1d;
 }

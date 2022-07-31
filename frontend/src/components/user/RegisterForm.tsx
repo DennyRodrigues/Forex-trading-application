@@ -15,7 +15,7 @@ export const RegisterForm = () => {
   function submitFormHandler(e: any) {
     setIsInvalid(false)
     e.preventDefault();
-    fetch(`http://localhost:${process.env.REACT_APP_API_PORT}/api/v1/users/register`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/register`, {
       method: "post",
       headers: {
         "Content-type": "application/json",
@@ -52,9 +52,9 @@ export const RegisterForm = () => {
         <Form.Control
           required
           type="text"
-          placeholder="Name"
+          placeholder="John"
           name="value"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
           value={name}
           autoComplete="off"
         />
@@ -62,9 +62,9 @@ export const RegisterForm = () => {
         <Form.Control
           required
           type="email"
-          placeholder="Email"
+          placeholder="example@gmail.com"
           name="value"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           value={email}
           autoComplete="off"
         />
@@ -72,9 +72,9 @@ export const RegisterForm = () => {
         <Form.Control
           required
           type="password"
-          placeholder="Passoword"
+          placeholder="01234"
           name="value"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           value={password}
         />
         {isInvalid && <p className="error" data-testId>Invalid Request</p>}
