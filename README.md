@@ -2,7 +2,7 @@
 Forex trading application to make mock trades. You can trade JPY(Japanese yen) for USD(Dolar). First, it's necessary to create an account and login. Then, every user starts with 5000JPY and 5000USD and can make mock trades and look their own past trades.
 
 ## How to run this app locally?
-First, it's necessary to use your account on https://twelvedata.com/account, and get your own api key
+First, it's necessary to use or create your account on https://twelvedata.com/account, and get your own api key
 There are two folders, frontend and backend. 
 You will need to create a .env file on both:
 
@@ -42,3 +42,7 @@ npm start
 * Express.JS
 * RESTful API
 * MongoDB
+
+
+Link to see the application:
+https://forex-trading-mock-app.herokuapp.com/
