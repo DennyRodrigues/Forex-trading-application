@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from "react";
 import { Table } from "react-bootstrap";
 import { AuthContext } from "../../contexts/authentication/AuthContext";
+import  styled  from "styled-components"
 
 export const PastTrades = () => {
   let token = useContext(AuthContext)?.token;
@@ -36,11 +37,11 @@ export const PastTrades = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Num</th>
-                <th>Date</th>
-                <th>Paid</th>
-                <th>Received</th>
-                <th>Rate</th>
+                <StyledTh>Num</StyledTh>
+                <StyledTh>Date</StyledTh>
+                <StyledTh>Paid</StyledTh>
+                <StyledTh>Received</StyledTh>
+                <StyledTh>Rate</StyledTh>
               </tr>
             </thead>
             <tbody>
@@ -62,17 +63,17 @@ export const PastTrades = () => {
                   );
                   return (
                     <tr key={index}>
-                      <td>{trades.length - index}</td>
-                      <td>{date}</td>
-                      <td>
+                      <StyledTd>{trades.length - index}</StyledTd>
+                      <StyledTd>{date}</StyledTd>
+                      <StyledTd>
                         {Number(trade.entryAmount).toFixed(2)}
                         {trade.entrySymbol}
-                      </td>
-                      <td>
+                      </StyledTd>
+                      <StyledTd>
                         {Number(trade.exitAmount).toFixed(2)}
                         {trade.exitSymbol}
-                      </td>
-                      <td>{trade.exchangeRate.toFixed(6)}</td>
+                      </StyledTd>
+                      <StyledTd>{trade.exchangeRate.toFixed(6)}</StyledTd>
                     </tr>
                   );
                 })}
@@ -90,3 +91,22 @@ export const PastTrades = () => {
     return <p>ERROR: Unable to connect with server</p>;
   }
 };
+
+const StyledTh = styled.th`
+font-size: 1rem;
+@media (min-width: 800px){
+  font-size: 1.5rem;
+}
+@media (min-width: 700px){
+  font-size: 1.3rem;
+}
+`
+const StyledTd = styled.td`
+  font-size: 1rem;
+  @media (min-width: 800px){
+  font-size: 1.5rem;
+}
+@media (min-width: 700px){
+  font-size: 1.3rem;
+}
+`
