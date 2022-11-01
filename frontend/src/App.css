@@ -1,21 +1,19 @@
-.container{
+.container {
   padding: 8rem 0px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
-
 
 /* Trade */
 
-.trade-container{
+.trade-container {
   padding: 2rem;
 
   align-items: center;
-  gap:1rem;
+  gap: 1rem;
 
   margin-bottom: 5rem;
   flex-wrap: nowrap;
@@ -23,97 +21,93 @@
   border-radius: 2px;
 }
 
-
 /* Past trades */
 
-.past-trades-container .list-group-item{
+.past-trades-container .list-group-item {
   background-color: #ddd;
-  box-shadow: 0px 7px 10px 5px rgba(0,0,0,.1);
+  box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.1);
 }
 
-.list-group-item span{
-  margin:0 30px;
+.list-group-item span {
+  margin: 0 30px;
   font-weight: 600;
   color: black;
 }
 
-
 /*  Headers */
-.header{
+.header {
   padding: 10px 10px;
 }
 
 /* Nav */
-.nav{
+.nav {
   font-size: 24px;
-  background-color: rgb(241, 230, 230);
+  background-color: rgb(35, 193, 255);
   padding: 10px 20px;
   position: fixed;
   width: 100%;
 }
 
-.log-off{
+.log-off {
   margin-right: 40px;
 }
-.nav-item{
+.nav-item {
   display: flex;
   align-items: center;
 }
-.nav .btn{
+.nav .btn {
   font-size: inherit;
 }
-.nav-user-info{
+.nav-user-info {
   margin-left: auto;
 }
 /* UserInfo */
-.user-info{
+.user-info {
   margin-left: auto;
 
   display: flex;
   align-items: center;
   justify-content: right;
-
 }
-.user-info p{
-  margin-bottom:0px;
+.user-info p {
+  margin-bottom: 0px;
   margin-left: 24px;
 }
-.user-info__menu{
-  color: black!important;
+.user-info__menu {
+  color: black !important;
 }
-.user-info__menu a{
+.user-info__menu a {
   color: black !important;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.dropdown-item { 
-color: black !important;
+.dropdown-item {
+  color: black !important;
 }
 .user-info__text {
   text-align: center;
 }
-.user-info__wallet{
+.user-info__wallet {
   display: flex;
   align-items: center;
-
 }
-.user-info__wallet-box{
+.user-info__wallet-box {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.user-info__wallet-box{
+.user-info__wallet-box {
   font-weight: 700;
 }
-.user-info__dropdowm-item{
+.user-info__dropdowm-item {
   display: flex;
   flex-direction: column;
-
 }
 /* ERROR */
-.error{
+.error {
+  font-size: 1rem;
   margin-bottom: 0px;
   color: #d81d1d;
 }

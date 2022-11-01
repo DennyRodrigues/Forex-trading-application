@@ -1,24 +1,23 @@
-import "bootstrap/dist/css/bootstrap.css";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { useState, useContext } from "react";
-import { AuthContext } from "../../contexts/authentication/AuthContext";
+import TextField from '@mui/material/TextField'
+import Box from '@mui/material/Box'
+import { useState, useContext } from 'react'
+import { AuthContext } from '../../contexts/authentication/AuthContext'
+import { Button } from '@mui/material'
 
-export const LoginForm = (props: any) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isInvalid, setIsInvalid] = useState(false);
+export const LoginForm = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [isInvalid, setIsInvalid] = useState(false)
 
-
-  let onLogin = useContext(AuthContext)?.onLogin;
+  let onLogin = useContext(AuthContext)?.onLogin
 
   // The form will submit using fetch
-  function submitFormHandler(e: any) {
-    e.preventDefault();
+  function submitFormHandler(e: React.FormEvent) {
+    e.preventDefault()
     fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/login`, {
-      method: "post",
+      method: 'post',
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: JSON.stringify({
         email: email,
@@ -26,59 +25,63 @@ export const LoginForm = (props: any) => {
       }),
     })
       .then((res: any) => {
-        return res.json();
+        return res.json()
       })
       .then((res) => {
-        if (res.status === "success") {
+        if (res.status === 'success') {
           // Add token to AuthContext
           if (onLogin) {
-            onLogin(res.result);
+            onLogin(res.result)
           }
         } else {
           setIsInvalid(true)
         }
       })
       .catch((e) => {
-        console.log(e);
+        console.error(e)
         setIsInvalid(true)
-      });
+      })
   }
   return (
-    <Form onSubmit={submitFormHandler} autoComplete="off">
-      <Form.Group>
-        <Form.Label>Email</Form.Label>
-        <Form.Control
-          required
-          type="email"
-          placeholder="example@gmail.com"
-          name="value"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-          value={email}
-          autoComplete="off"
-        />
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          required
-          type="password"
-          placeholder="01234"
-          name="value"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-          value={password}
-          autoComplete="off"
-        />
-        {isInvalid && (
-          <p className="error" data-testid="error">
-            Invalid Request
-          </p>
-        )}
-        <Button
-          className="w-100 fs-3 p-0 mt-3"
-          type="submit"
-          role="SubmitButton"
-        >
-          Login In
-        </Button>
-      </Form.Group>
-    </Form>
-  );
-};
+    <Box
+      component='form'
+      sx={{
+        '& > :not(style)': { m: 1, width: '350px' },
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      autoComplete='off'
+      onSubmit={submitFormHandler}
+    >
+      <TextField
+        required
+        label='E-mail'
+        type='email'
+        placeholder='example@gmail.com'
+        name='value'
+        onChange={(e) => setEmail(e.target.value)}
+        value={email}
+      />
+      <TextField
+        label='Password'
+        required
+        type='password'
+        name='value'
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setPassword(e.target.value)
+        }
+        value={password}
+        autoComplete='off'
+      />
+
+      {isInvalid && (
+        <p className='error' data-testid='error'>
+          Invalid Request
+        </p>
+      )}
+      <Button type='submit' variant='contained' role='SubmitButton'>
+        Login In
+      </Button>
+    </Box>
+  )
+}
