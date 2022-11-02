@@ -5,13 +5,13 @@ import { Home } from './routes/HomePage'
 import { RegisterPage } from './routes/RegisterPage'
 import { AuthProvider } from './contexts/authentication/AuthProvider'
 import { PastTradesPage } from './routes/PastTradesPage'
-import { NavBarComponent } from './components/Nav/Nav'
+import { NavBar } from './components/Nav/NavBar'
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <NavBarComponent />
+        <NavBar />
         <Routes>
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />

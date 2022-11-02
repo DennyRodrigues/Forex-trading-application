@@ -4,7 +4,7 @@ import { AuthContext } from '../../contexts/authentication/AuthContext'
 import { UserInfo } from '../User/UserInfo'
 import { NavLinks } from './NavLinks'
 
-export const NavBarComponent = () => {
+export const NavBar = () => {
   const onLogout = useContext(AuthContext)?.onLogout
   const token = useContext(AuthContext)?.token
 

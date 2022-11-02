@@ -1,86 +1,86 @@
-import { useContext } from "react";
-import { Button, Dropdown } from "react-bootstrap";
-import styled from "styled-components";
-import { AuthContext } from "../../contexts/authentication/AuthContext";
+import React, { useContext } from 'react'
+import Button from '@mui/material/Button'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+
+import { AuthContext } from '../../contexts/authentication/AuthContext'
+import { Typography } from '@mui/material'
 
 export const UserInfo = () => {
-  const user = useContext(AuthContext)?.user;
-  const onLogout = useContext(AuthContext)?.onLogout;
+  const user = useContext(AuthContext)?.user
+  const onLogout = useContext(AuthContext)?.onLogout
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
+  const open = Boolean(anchorEl)
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   return (
-    <Dropdown className="user-info">
-      <Dropdown.Toggle>My account</Dropdown.Toggle>
-      <Dropdown.Menu>
-        <Dropdown.Item className="user-info__text text-center" disabled>
-          {user?.name?.toLocaleUpperCase()}
-        </Dropdown.Item>
-        <WalletContainer>
-        <WalletTitle>
-          Wallet
-        </WalletTitle>
-          <WalletList>
+    <div>
+      <Button
+        id='basic-button'
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup='true'
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+        sx={{
+          color: 'white',
+          padding: '8px 16px',
+          backgroundColor: 'rgb(21,101,192)',
+          boxShadow: '0 3px 6px rgba(0,0,0,0.5)',
+        }}
+      >
+        📊 My Account
+      </Button>
+      <Menu
+        id='basic-menu'
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+          sx: {
+            ':hover': {
+              bgcolor: 'inherit',
+            },
+          },
+        }}
+        PaperProps={{
+          sx: { padding: '0 10px' },
+        }}
+      >
+        <Typography
+          variant='h6'
+          sx={{
+            margin: '10px',
+            textAlign: 'center',
+            borderBottom: '1px solid rgba(122,122,255,0.2)',
+            bgcolor: 'rgba(122,122,255,0.1)',
+          }}
+        >
+          💼 Wallet
+        </Typography>
+        <Typography variant='body2' sx={{ marginBottom: '5px' }}>
+          {user?.name}
+        </Typography>
+
         {user?.wallet &&
           Object.entries(user.wallet).map(([key, value]) => {
             return (
-              <WalletItemAmount
-                className={`user-info__wallet__value user-info__wallet--${key}`}
+              <MenuItem
+                onClick={handleClose}
                 key={key}
-                disabled
+                sx={{ border: '1px solid rgba(0,0,0,0.2)' }}
               >
-                {key} = {""}
-                {value.toFixed(2).toString()}
-              </WalletItemAmount>
-            );
+                {`${key}: ${value.toFixed(2).toString()}`}
+              </MenuItem>
+            )
           })}
-          </WalletList>
-        </WalletContainer>
-        <LogoutButtonContainer>
-        {onLogout && <LogoutButton onClick={() => onLogout()}>
-            Log off        </LogoutButton>}
-        </LogoutButtonContainer>
-
-
-      </Dropdown.Menu>
-    </Dropdown>
-  );
-};
-
-const WalletContainer = styled.div`
-  border: 1px solid #000;
-`
-const WalletTitle = styled.h3`
-  text-align: center;
-  font-weight: 400;
-  font-size: 2.1rem;
-  margin-bottom: 0;
-`
-const WalletList = styled.ul`
-  list-style: none;
-  margin:0;
-  padding:0;
-`
-const WalletItemAmount = styled(Dropdown.Item)`
-  border: 1px solid #000;
-`
-const LogoutButtonContainer = styled.div`
-margin: auto auto;
-display: flex;
-justify-content: center;
-align-items: center;
-`
-const LogoutButton = styled(Button)`
-  margin: auto auto;
-  text-align: center;
-  font-weight: 400;
-  font-size: 3rem;
-  color: #333;
-  margin-bottom: 0;
-  background-color: transparent;
-  border: none;
-  &:active, &:hover, &:focus{
-    background-color: transparent;
-    color: #333;
-    font-weight: 500;
-  }
-`
+      </Menu>
+    </div>
+  )
+}

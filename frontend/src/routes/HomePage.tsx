@@ -8,13 +8,15 @@ export const Home = () => {
   return (
     <RequireAuth>
       <WebSocketProvider>
-        <div className='container Home'>
-          <ExchangeRatesTable />
-          <div className='trade-container'>
-            <SellUSDForm entrySymbol='USD' />
-          </div>
-          <div className='trade-container'>
-            <BuyUSDForm entrySymbol='USD' />
+        <div className='container'>
+          <div className='wrapper'>
+            <ExchangeRatesTable />
+            <div className='trade-container'>
+              <SellUSDForm entrySymbol='USD' />
+            </div>
+            <div className='trade-container'>
+              <BuyUSDForm entrySymbol='USD' />
+            </div>
           </div>
         </div>
       </WebSocketProvider>

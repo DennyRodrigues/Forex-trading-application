@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css'
 import Button from 'react-bootstrap/Button'
 import styled from 'styled-components'
 import { useContext, useEffect, useState } from 'react'

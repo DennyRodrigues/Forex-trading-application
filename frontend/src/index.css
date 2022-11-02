@@ -7,3 +7,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.link:link,
+.link:hover {
+  color: rgba(200, 200, 255, 1);
+  transition: all 0.25s;
+}
+
+.wrapper {
+  width: 320px;
+}
+
+@media screen and (min-width: 700px) {
+  .wrapper {
+    width: 600px;
+  }
+}
