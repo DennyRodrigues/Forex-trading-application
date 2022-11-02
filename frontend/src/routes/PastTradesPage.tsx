@@ -1,12 +1,12 @@
-import { RequireAuth } from "../contexts/authentication/RequireAuth";
-import { PastTrades } from "../components/pastTrades/PastTrades";
+import { RequireAuth } from '../contexts/authentication/RequireAuth'
+import { PastTrades } from '../components/PastTrades/PastTrades'
 
 export const PastTradesPage = () => {
   return (
     <RequireAuth>
-      <div className="container">
+      <div className='container'>
         <PastTrades />
       </div>
     </RequireAuth>
-  );
-};
+  )
+}

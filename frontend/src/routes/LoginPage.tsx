@@ -1,4 +1,4 @@
-import { LoginForm } from '../components/user/LoginForm'
+import { LoginForm } from '../components/User/LoginForm'
 import { Link } from 'react-router-dom'
 import { Box, Typography } from '@mui/material'
 

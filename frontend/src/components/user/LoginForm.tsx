@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/authentication/AuthContext'
 import { Button } from '@mui/material'
+import { InvalidResquest } from '../InvalidResquest/InvalidResquest'
 
 export const LoginForm = () => {
   const [email, setEmail] = useState('')
@@ -71,14 +72,8 @@ export const LoginForm = () => {
           setPassword(e.target.value)
         }
         value={password}
-        autoComplete='off'
       />
-
-      {isInvalid && (
-        <p className='error' data-testid='error'>
-          Invalid Request
-        </p>
-      )}
+      {isInvalid && <InvalidResquest />}
       <Button type='submit' variant='contained' role='SubmitButton'>
         Login In
       </Button>

@@ -1,13 +1,13 @@
-
 export interface User {
-  name: string;
-  token: string;
+  name: string
   wallet: {
-    JPY: number;
-    USD: number;
-    BTC: number;
-    EUR: number;
-  };
-};
+    JPY: number
+    USD: number
+    BTC: number
+    EUR: number
+  }
+}
 
-export type UserContext = Omit<User, "token">;
+export interface ServerResponseLogin extends User {
+  token: string
+}

@@ -5,7 +5,7 @@ import { Home } from './routes/HomePage'
 import { RegisterPage } from './routes/RegisterPage'
 import { AuthProvider } from './contexts/authentication/AuthProvider'
 import { PastTradesPage } from './routes/PastTradesPage'
-import { NavBarComponent } from './components/nav/Nav'
+import { NavBarComponent } from './components/Nav/Nav'
 
 function App() {
   return (
