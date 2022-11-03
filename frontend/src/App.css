@@ -9,15 +9,7 @@
 /* Trade */
 
 .trade-container {
-  padding: 2rem;
-
-  align-items: center;
-  gap: 1rem;
-
-  margin-bottom: 5rem;
-  flex-wrap: nowrap;
-  background-color: rgb(241, 230, 230);
-  border-radius: 2px;
+  background-color: rgb(192, 192, 192);
 }
 
 /* Past trades */

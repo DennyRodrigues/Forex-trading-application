@@ -1,27 +1,21 @@
-import styled from "styled-components"
+import { Typography } from '@mui/material'
+import styled from 'styled-components'
 
 type IProps = {
-  exitAmount: number;
-  isLoading: boolean;
+  exitAmount: number
 }
-export const TradeCalculation: React.FC<IProps> = ({ exitAmount, isLoading }) => {
-
+export const TradeCalculation: React.FC<IProps> = ({ exitAmount }) => {
+  console.log('exitAmount:', exitAmount)
   return (
     <Container>
-      <StyledText>
-        {isLoading ? "Loading..." :  exitAmount.toFixed(6)}
-      </StyledText>
+      <Typography>
+        {isNaN(exitAmount) ? 'Loading...' : exitAmount.toFixed(6)}
+      </Typography>
     </Container>
-
   )
 }
 
 const Container = styled.div`
-width: 100%;
-
-`
-const StyledText = styled.p`
-text-align: center;
-margin-bottom: 0;
-
+  width: 100%;
+  text-align: end;
 `

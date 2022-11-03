@@ -23,8 +23,14 @@ body {
   width: 320px;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 500px) {
   .wrapper {
-    width: 600px;
+    width: 460px;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .wrapper {
+    width: 640px;
   }
 }

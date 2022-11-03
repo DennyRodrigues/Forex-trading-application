@@ -29,7 +29,7 @@ export const ExchangeRatesTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {exchangeRates.map((exchange: ExchangeRate) => (
+            {exchangeRates?.map((exchange: ExchangeRate) => (
               <TableRow
                 key={exchange.symbol}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

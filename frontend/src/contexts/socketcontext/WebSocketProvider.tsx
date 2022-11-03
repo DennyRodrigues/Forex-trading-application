@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo, useContext } from 'react'
 import io from 'socket.io-client'
 import { createContext } from 'react'
-import { ExchangeRate } from '../../types/Trade'
+import { ExchangeRate, IWebSocketContext } from '../../types/Trade'
 
-const WebSocketContext = createContext<any>({})
+const WebSocketContext = createContext<IWebSocketContext | null>(null)
 
 // The context will connect to the websocket on backend
 export const WebSocketProvider = (props: any) => {
@@ -49,5 +49,5 @@ export const WebSocketProvider = (props: any) => {
 // Hooks
 export const useExchangeRates = () => {
   const contextValues = useContext(WebSocketContext)
-  return contextValues.ratesForUSD
+  return contextValues?.ratesForUSD
 }

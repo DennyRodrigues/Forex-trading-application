@@ -1,30 +1,34 @@
-import React from "react";
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 interface IProps {
-  exchangeOptions: string[];
-  selectedExchange: string;
-  setSelectedExchange: React.Dispatch<React.SetStateAction<string>>;
-};
+  exchangeOptions: string[]
+  selectedExchange: string
+  setSelectedExchange: React.Dispatch<React.SetStateAction<string>>
+}
 
-export const SelectCurrency: React.FC<IProps> = ({ exchangeOptions, selectedExchange, setSelectedExchange }) => {
+export const SelectCurrency: React.FC<IProps> = ({
+  exchangeOptions,
+  selectedExchange,
+  setSelectedExchange,
+}) => {
   return (
-      <StyledSelectInput
-        value={selectedExchange}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSelectedExchange(e.target.value)}
-        title="Exchange Currency"
-      >
-        {exchangeOptions.map((option: any) => <StyledOption key={option}>{option}</StyledOption>)}
-
-      </StyledSelectInput>
+    <StyledSelectInput
+      value={selectedExchange}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        setSelectedExchange(e.target.value)
+      }
+      title='Exchange Currency'
+    >
+      {exchangeOptions.map((option: any) => (
+        <StyledOption key={option}>{option}</StyledOption>
+      ))}
+    </StyledSelectInput>
   )
 }
 
-
 const StyledSelectInput = styled.select`
-display: flex;
+  width: 100%;
+  font-family: inherit;
 `
-const StyledOption = styled.option`
-
-`
-
+const StyledOption = styled.option``
