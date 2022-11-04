@@ -6,6 +6,7 @@ type IProps = {
 }
 export const TradeCalculation: React.FC<IProps> = ({ exitAmount }) => {
   console.log('exitAmount:', exitAmount)
+
   return (
     <Container>
       <Typography>

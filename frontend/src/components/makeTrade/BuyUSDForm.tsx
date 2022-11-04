@@ -38,7 +38,6 @@ export const BuyUSDForm = (props: any) => {
     exchangeRate: rate,
     value: entryAmount,
   }
-
   // Consts
 
   const onClickSwapButton = () => {
@@ -51,7 +50,7 @@ export const BuyUSDForm = (props: any) => {
     } else {
       setRate(1 / selectedExchangeRate)
     }
-  }, [isSwapped, entryAmount, selectedExchangeRate])
+  }, [isSwapped, selectedExchangeRate, setSelectedExchangeRate, rate])
 
   // Effects  Update exchange rate
   useEffect(() => {
@@ -62,15 +61,12 @@ export const BuyUSDForm = (props: any) => {
         )?.value as number
       )
     }
-  }, [selectedExchangeSymbol, entryAmount, webSocketRate])
+  }, [selectedExchangeSymbol, entryAmount])
 
   // Effects  Update exit Amount
   useEffect(() => {
-    if (webSocketRate)
-      setExitAmount(() => {
-        return entryAmount * rate
-      })
-  }, [entryAmount, selectedExchangeRate, isSwapped])
+    setExitAmount(entryAmount * rate)
+  }, [entryAmount, rate])
   // Functions
   // The form will submit using fetch
   function onSubmitHandler(e: React.FormEvent<HTMLInputElement>) {
