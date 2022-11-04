@@ -5,7 +5,7 @@ import { connectDB } from './database/connectDB'
 config()
 
 const port = process.env.PORT
-
+console.log(process.env.NODE_ENV)
 // Connect to Database
 connectDB()
 

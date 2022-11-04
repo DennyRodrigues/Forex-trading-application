@@ -11,8 +11,7 @@ You will need to create a .env file on both:
 On the backend:
 
 ```
-PORT_1={PORT_1}
-PORT_2={PORT_2}
+PORT={PORT}
 API_KEY=YOUR_API_KEY
 MONGO_URL=YOUR_MONGO_URL
 JWT_SECRET=YOUR_JWT_SECRET
@@ -21,9 +20,8 @@ JWT_SECRET=YOUR_JWT_SECRET
 On the frontend:
 
 ```
-REACT_APP_BASE_URL={BASE_URL} ex: localhost:5000
-REACT_APP_API_PORT={PORT_1}
-REACT_APP_SOCKET_PORT={PORT_2}
+REACT_APP_BASE_URL={BASE_URL} ex: http://localhost:3000
+REACT_APP_SOCKET_URL={SOCKET_URL} ex 'http://localhost:5007'
 ```
 
 To start the backend, enter the /backend folder and run:
@@ -43,6 +41,7 @@ npm start
 ## Techonologies:
 
 - React.JS
+- Material UI
 - WebSocket
 - Typescript
 - Jest
