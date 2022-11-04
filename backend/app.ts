@@ -21,9 +21,11 @@ app.use('/api/v1/trades', tradeRouter)
 app.use('/api/v1/users', userRouter)
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')))
+  app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'build')))
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'build', 'index.html'))
+    res.sendFile(
+      path.join(__dirname, '..', '..', 'frontend', 'build', 'index.html')
+    )
   })
 } else {
   if (process.env.NODE_ENV !== 'development') {
@@ -31,9 +33,11 @@ if (process.env.NODE_ENV === 'production') {
       "The server is running in development mode by default, if you want to change to production, set NODE_ENV variable on .env to 'production"
     )
   }
-  app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')))
+  app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'build')))
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'frontend', 'public', 'index.html'))
+    res.sendFile(
+      path.join(__dirname, '..', '..', 'frontend', 'public', 'index.html')
+    )
   })
 }
 

@@ -5,6 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "dev": "nodemon server.ts",
+    "prestart": "npm run build",
     "start": "node build/server.js",
     "build": "tsc",
     "postinstall": "npm run build",

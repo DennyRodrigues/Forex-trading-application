@@ -6,36 +6,43 @@ Forex trading application to make mock trades. You can trade JPY(Japanese yen) f
 
 First, it's necessary to use or create your account on https://twelvedata.com/account, and get your own api key
 There are two folders, frontend and backend.
-You will need to create a .env file on both:
+You will need to create a .env on the root folder with the following variables:
 
-On the backend:
+Used by the backend:
 
 ```
 PORT={PORT}
 API_KEY=YOUR_API_KEY
 MONGO_URL=YOUR_MONGO_URL
 JWT_SECRET=YOUR_JWT_SECRET
+
 ```
 
-On the frontend:
+Used by the frontend:
 
 ```
 REACT_APP_BASE_URL={BASE_URL} ex: http://localhost:3000
 REACT_APP_SOCKET_URL={SOCKET_URL} ex 'http://localhost:5007'
+
 ```
 
 To start the backend, enter the /backend folder and run:
 
 ```
+
 npm install
+npm build
 npm start
+
 ```
 
 To start the frontend, enter the /frontend folder and run:
 
 ```
+
 npm install
 npm start
+
 ```
 
 ## Techonologies:
@@ -52,3 +59,7 @@ npm start
 
 Link to see the application:
 https://forex-trading-mock-app.herokuapp.com/
+
+```
+
+```
