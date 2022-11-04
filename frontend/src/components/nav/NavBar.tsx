@@ -5,7 +5,6 @@ import { UserInfo } from '../User/UserInfo'
 import { NavLinks } from './NavLinks'
 
 export const NavBar = () => {
-  const onLogout = useContext(AuthContext)?.onLogout
   const token = useContext(AuthContext)?.token
 
   if (token) {

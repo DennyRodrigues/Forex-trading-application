@@ -4,7 +4,7 @@ import { useExchangeRates } from '../../contexts/socketcontext/WebSocketProvider
 import { ExchangeRate, ITradePayload } from '../../types/Trade'
 import { SelectCurrency } from './SelectCurrency/SelectCurrency'
 import { TradeCalculation } from './TradeCalculation'
-import { Box, Button, Typography, TypographyProps } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import styled from 'styled-components'
 
 const exchangeOptions = ['BTC', 'EUR', 'JPY']
@@ -61,7 +61,7 @@ export const BuyUSDForm = (props: any) => {
         )?.value as number
       )
     }
-  }, [selectedExchangeSymbol, entryAmount])
+  }, [selectedExchangeSymbol, entryAmount, webSocketRate])
 
   // Effects  Update exit Amount
   useEffect(() => {
