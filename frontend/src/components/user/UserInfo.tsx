@@ -11,6 +11,9 @@ export const UserInfo = () => {
   const onLogout = useContext(AuthContext)?.onLogout
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
+  const handleLogout = () => {
+    onLogout && onLogout()
+  }
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
@@ -29,12 +32,18 @@ export const UserInfo = () => {
         onClick={handleClick}
         sx={{
           color: 'white',
-          padding: '8px 16px',
+
+          padding: {
+            xs: '4px 8px',
+            sm: '8px 16px',
+            md: '10px 18px',
+          },
+
           backgroundColor: 'rgb(21,101,192)',
           boxShadow: '0 3px 6px rgba(0,0,0,0.5)',
         }}
       >
-        📊 My Account
+        <Typography variant='body2'>📊 My Account</Typography>
       </Button>
       <Menu
         id='basic-menu'
@@ -43,11 +52,6 @@ export const UserInfo = () => {
         onClose={handleClose}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
-          sx: {
-            ':hover': {
-              bgcolor: 'inherit',
-            },
-          },
         }}
         PaperProps={{
           sx: { padding: '0 10px' },
@@ -80,6 +84,22 @@ export const UserInfo = () => {
               </MenuItem>
             )
           })}
+        <Button
+          fullWidth
+          sx={{
+            marginTop: '20px',
+            bgcolor: 'rgba(255,0, 0, 0.8)',
+            borderRadius: '5px',
+            '&:hover': {
+              bgcolor: 'rgba(255,0, 0, 0.6);',
+            },
+          }}
+          onClick={handleLogout}
+        >
+          <Typography variant='body1' sx={{ color: 'white' }}>
+            ❌ Logout
+          </Typography>
+        </Button>
       </Menu>
     </div>
   )

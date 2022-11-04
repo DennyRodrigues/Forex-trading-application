@@ -10,13 +10,22 @@ body {
 
 .link {
   text-decoration: none;
-  color: white;
+  color: rgb(0, 119, 255);
 }
 
-.link:link,
 .link:hover {
-  color: rgba(200, 200, 255, 1);
+  color: rgb(73, 73, 233);
   transition: all 0.25s;
+}
+
+.nav-link:link,
+.nav-link:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: rgba(157, 204, 223, 0.637);
 }
 
 .wrapper {

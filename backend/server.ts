@@ -1,18 +1,15 @@
-import { config } from 'dotenv';
+import { config } from 'dotenv'
 import { app } from './app'
-import { connectDB } from "./database/connectDB";
+import { connectDB } from './database/connectDB'
 
-config();
+config()
 
 const port = process.env.PORT
 
-// Connect to Database 
-connectDB();
+// Connect to Database
+connectDB()
 
 // Backend RESTFUL API
 app.listen(port, () => {
-  console.log("API Server is up & running", port);
+  console.log('API Server is up & running on port:', port)
 })
-
-
-

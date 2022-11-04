@@ -21,7 +21,7 @@ export const SelectCurrency: React.FC<IProps> = ({
       title='Exchange Currency'
     >
       {exchangeOptions.map((option: any) => (
-        <StyledOption key={option}>{option}</StyledOption>
+        <option key={option}>{option}</option>
       ))}
     </StyledSelectInput>
   )
@@ -30,5 +30,6 @@ export const SelectCurrency: React.FC<IProps> = ({
 const StyledSelectInput = styled.select`
   width: 100%;
   font-family: inherit;
+  padding: 2px 3px;
+  border-radius: 5px;
 `
-const StyledOption = styled.option``

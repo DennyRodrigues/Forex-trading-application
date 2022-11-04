@@ -1,11 +1,11 @@
-import styled from 'styled-components'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/authentication/AuthContext'
 import { useExchangeRates } from '../../contexts/socketcontext/WebSocketProvider'
 import { ExchangeRate, ITradePayload } from '../../types/Trade'
 import { SelectCurrency } from './SelectCurrency/SelectCurrency'
 import { TradeCalculation } from './TradeCalculation'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Typography, TypographyProps } from '@mui/material'
+import styled from 'styled-components'
 
 const exchangeOptions = ['BTC', 'EUR', 'JPY']
 
@@ -116,7 +116,11 @@ export const BuyUSDForm = (props: any) => {
       <StyledFlex>
         <StyledFlexCol>
           {isSwapped ? (
-            <Typography>USD</Typography>
+            <Typography
+              sx={{ borderBottom: '1px solid rgba(122,122,122,0.5)' }}
+            >
+              USD
+            </Typography>
           ) : (
             <SelectCurrency
               setSelectedExchange={setSelectedExchangeSymbol}
@@ -136,11 +140,11 @@ export const BuyUSDForm = (props: any) => {
         <Button
           variant='contained'
           sx={{
+            minHeight: '35px',
+            minWidth: '35px',
             borderRadius: '100%',
             width: '35px',
             height: '35px',
-            padding: '0',
-            minWidth: '0',
           }}
           onClick={onClickSwapButton}
         >
@@ -148,7 +152,11 @@ export const BuyUSDForm = (props: any) => {
         </Button>
         <StyledFlexCol>
           {!isSwapped ? (
-            <Typography>USD</Typography>
+            <Typography
+              sx={{ borderBottom: '1px solid rgba(122,122,122,0.5)' }}
+            >
+              USD
+            </Typography>
           ) : (
             <SelectCurrency
               setSelectedExchange={setSelectedExchangeSymbol}
@@ -167,12 +175,7 @@ export const BuyUSDForm = (props: any) => {
         ) : (
           <p className='error'></p>
         )}
-        <Button
-          disabled={!canSubmit}
-          variant='contained'
-          type='submit'
-          role='submitButton'
-        >
+        <Button disabled={!canSubmit} variant='contained' type='submit'>
           Trade
         </Button>
       </Box>
@@ -189,13 +192,13 @@ const StyledFlex = styled.div`
     swap &&
     `
     flex-direction: row-reverse;
-`};
+  `})
 `
-
 const StyledForm = styled.form``
 
 const StyledFlexCol = styled.div`
   width: 200px;
+  height: 85px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -213,10 +216,4 @@ const StyledInput = styled.input`
   border: none;
   width: 100%;
   outline: 1px solid rgba(0, 0, 0, 0.2);
-  &:active {
-    outline: none;
-  }
-  &:focus {
-    outline: none;
-  }
 `
