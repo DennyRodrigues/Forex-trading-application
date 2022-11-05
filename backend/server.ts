@@ -1,14 +1,12 @@
 import { config } from 'dotenv'
+config()
 import { app } from './app'
 import { connectDB } from './database/connectDB'
 import { runWebSocketServer } from './socket/runWebSocketServer'
 
-config()
-
 const port = process.env.PORT
-console.log(process.env.NODE_ENV)
-// Connect to Database
 
+// Initialize the startup routine
 runWebSocketServer().then(() => {
   connectDB().then(() => {
     app.listen(port, () => {
@@ -16,5 +14,3 @@ runWebSocketServer().then(() => {
     })
   })
 })
-
-// Backend RESTFUL API

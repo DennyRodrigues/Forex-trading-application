@@ -1,12 +1,14 @@
 import mongoose from 'mongoose'
 
+const MONGO_URL = process.env.MONGO_URL
 export async function connectDB() {
-  const MONGO_URL: string = process.env.MONGO_URL!
+  if (!MONGO_URL) {
+    throw new Error('MONGO_URL enviroment variable must be set')
+  }
   try {
     await mongoose.connect(MONGO_URL)
     console.log('mongoDB connected successfully.')
   } catch (error) {
-    console.log(error)
-    process.exit(1)
+    throw error
   }
 }
