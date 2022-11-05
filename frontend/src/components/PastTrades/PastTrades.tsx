@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 
-export const PastTrades = () => {
+export const PastTradesTable = () => {
   let token = useContext(AuthContext)?.token
 
   const [trades, setTrades] = useState<[] | null>(null)
@@ -77,11 +77,11 @@ export const PastTrades = () => {
                       <TableCell align='center'>{date}</TableCell>
                       <TableCell align='right'>
                         {Number(trade.entryAmount).toFixed(2)}
-                        {trade.entrySymbol}
+                        {` ${trade.exitSymbol}`}
                       </TableCell>
                       <TableCell align='right'>
                         {Number(trade.exitAmount).toFixed(2)}
-                        {trade.exitSymbol}
+                        {` ${trade.exitSymbol}`}
                       </TableCell>
                       <TableCell align='right'>
                         {trade.exchangeRate.toFixed(6)}

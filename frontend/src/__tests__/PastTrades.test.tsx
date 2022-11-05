@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
-import { PastTrades } from '../components/PastTrades/PastTrades'
+import { PastTradesTable } from '../components/PastTrades/PastTrades'
 
 describe('test past trades', () => {
   it('Should Render correct text when trades is empty', async () => {
@@ -11,7 +11,7 @@ describe('test past trades', () => {
     ) as jest.Mock
     // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
-      render(<PastTrades />)
+      render(<PastTradesTable />)
     })
     await waitFor(async () => {
       expect(
@@ -27,7 +27,7 @@ describe('test past trades', () => {
     ) as jest.Mock
     // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
-      render(<PastTrades />)
+      render(<PastTradesTable />)
     })
     await waitFor(async () => {
       expect(
@@ -60,7 +60,7 @@ describe('test past trades', () => {
     ) as jest.Mock
     // eslint-disable-next-line testing-library/no-unnecessary-act
     await act(async () => {
-      render(<PastTrades />)
+      render(<PastTradesTable />)
     })
     expect(
       screen.getByText('entrySymbolTest', {
