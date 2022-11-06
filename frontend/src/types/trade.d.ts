@@ -1,10 +1,10 @@
-export interface ExchangeRate {
+export interface IExchangeRate {
   symbol: string
   value: number
 }
 
 export interface IWebSocketContext {
-  ratesForUSD: ExchangeRate[]
+  ratesForUSD: IExchangeRate[]
 }
 
 export interface ITradePayload {

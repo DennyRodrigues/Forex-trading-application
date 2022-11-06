@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { useExchangeRates } from '../../contexts/socketcontext/WebSocketProvider'
-import { ExchangeRate } from '../../types/Trade'
+import { IExchangeRate } from '../../types/trade'
 
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -29,7 +29,7 @@ export const ExchangeRatesTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {exchangeRates?.map((exchange: ExchangeRate) => (
+            {exchangeRates?.map((exchange: IExchangeRate) => (
               <TableRow
                 key={exchange.symbol}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

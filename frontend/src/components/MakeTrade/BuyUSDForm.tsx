@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../contexts/authentication/AuthContext'
 import { useExchangeRates } from '../../contexts/socketcontext/WebSocketProvider'
-import { ExchangeRate, ITradePayload } from '../../types/Trade'
+import { IExchangeRate, ITradePayload } from '../../types/trade'
 import { SelectCurrency } from './SelectCurrency/SelectCurrency'
 import { TradeCalculation } from './TradeCalculation'
 import { Box, Button, Typography } from '@mui/material'
@@ -57,7 +57,7 @@ export const BuyUSDForm = (props: any) => {
     if (webSocketRate) {
       setSelectedExchangeRate(
         webSocketRate?.find(
-          (rate: ExchangeRate) => rate?.symbol === selectedExchangeSymbol
+          (rate: IExchangeRate) => rate?.symbol === selectedExchangeSymbol
         )?.value as number
       )
     }

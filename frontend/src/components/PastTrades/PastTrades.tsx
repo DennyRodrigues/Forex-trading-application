@@ -14,10 +14,11 @@ export const PastTradesTable = () => {
 
   const [trades, setTrades] = useState<[] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const development_URL = process.env.REACT_APP_BASE_URL || ''
 
   useEffect(() => {
     setIsLoading(true)
-    fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/trades`, {
+    fetch(`${development_URL}/api/v1/trades`, {
       method: 'get',
       headers: {
         Authorization: `Bearer ${token}`,
