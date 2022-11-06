@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useContext } from 'react'
-import io from 'socket.io-client'
 import { createContext } from 'react'
 import { ExchangeRate, IWebSocketContext } from '../../types/Trade'
+import CreateIO from 'socket.io-client'
 
 const WebSocketContext = createContext<IWebSocketContext | null>(null)
 
@@ -22,8 +22,9 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
   ])
 
   useEffect(() => {
-    const socket = io()
-    socket.on('message', (data) => {
+    const io = CreateIO()
+
+    io.on('message', (data) => {
       if (data) {
         setRatesForUSD((prev) => {
           return prev.map((rate) => {

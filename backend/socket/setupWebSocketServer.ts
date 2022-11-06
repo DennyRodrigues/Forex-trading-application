@@ -8,7 +8,7 @@ export async function setupWebSocketServer(server: ServerType) {
 
   //Start the backend server socket
   console.log(server)
-  const backendSocket = new Server(server, {
+  const io = new Server(server, {
     cors: {
       origin: '*',
     },
@@ -18,6 +18,13 @@ export async function setupWebSocketServer(server: ServerType) {
   }
 
   server.listen(PORT, callback)
+
+  io.on('connection', () => {
+    console.log('a user is connected')
+  })
+  io.on('error', (e: NodeJS.ErrnoException) => {
+    console.error(e)
+  })
 
   server.on('error', (e: NodeJS.ErrnoException) => {
     if (e.code === 'EADDRINUSE') {
@@ -46,7 +53,7 @@ export async function setupWebSocketServer(server: ServerType) {
 
     // Listen for messages and emit it using the backedSocket
     tradeSocket.on('message', (data: any) => {
-      backendSocket.emit('message', parseData(data))
+      io.emit('message', parseData(data))
     })
   }
   connectExternalAPI()
