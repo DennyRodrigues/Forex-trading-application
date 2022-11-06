@@ -1,13 +1,12 @@
-import { config } from 'dotenv'
 import ws from 'ws'
 import { parseData } from '../helpers/parseExternalDate'
 import type { Server } from 'http'
 import { Server as CreateServer } from 'socket.io'
-config()
 
 export async function setupWebSocketServer(server: Server) {
   const PORT = process.env.WEBSOCKET_PORT || 5001
 
+  console.log(process.env.API_KEY)
   //Start the backend server socket
   const backendSocket = new CreateServer(server, {
     cors: {
