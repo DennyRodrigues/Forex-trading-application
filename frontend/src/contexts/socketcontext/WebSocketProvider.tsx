@@ -7,7 +7,7 @@ const WebSocketContext = createContext<IWebSocketContext | null>(null)
 
 // The context will connect to the websocket on backend
 export const WebSocketProvider = (props: any) => {
-  const socketUrl = process.env.REACT_APP_SOCKET_URL || ''
+  const socketUrl = `${window.location.origin}:${process.env.WEBSOCKET_PORT}`
   console.log(socketUrl)
   // The Exchange rate will use the USD as the base currency. They will be USD/BTC, USD/EUR. USD/JPY;
   const [ratesForUSD, setRatesForUSD] = useState<ExchangeRate[]>([
