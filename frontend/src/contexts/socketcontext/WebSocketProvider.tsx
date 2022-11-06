@@ -23,6 +23,10 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
 
   useEffect(() => {
     const io = CreateIO()
+    console.log(
+      '🚀 ~ file: WebSocketProvider.tsx ~ line 26 ~ useEffect ~ io',
+      io
+    )
 
     io.on('message', (data) => {
       if (data) {
@@ -36,7 +40,7 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
         })
       }
     })
-  }, [socketUrl])
+  }, [])
 
   const value = useMemo(
     () => ({
