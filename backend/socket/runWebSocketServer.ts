@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import { setupWebSocketServer } from './setupWebSocketServer'
-import { createServer } from 'http'
+import { createServer } from 'https'
 
 const app = express()
 app.use(cors())
