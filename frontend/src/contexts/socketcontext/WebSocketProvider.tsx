@@ -10,7 +10,7 @@ interface IWebSocketProvider {
 }
 // The context will connect to the websocket on backend
 export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
-  const socketUrl = `${window.location.origin}:${
+  const socketUrl = `${window.location}:${
     process.env.REACT_APP_WEBSOCKET_PORT || 5001
   }`
   console.log(socketUrl)
@@ -22,7 +22,7 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
   ])
 
   useEffect(() => {
-    const socket = io(socketUrl)
+    const socket = io()
     socket.on('message', (data) => {
       if (data) {
         setRatesForUSD((prev) => {

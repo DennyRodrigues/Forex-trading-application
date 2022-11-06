@@ -1,13 +1,14 @@
 import ws from 'ws'
 import { parseData } from '../helpers/parseExternalDate'
-import type { Server } from 'http'
-import { Server as CreateServer } from 'socket.io'
+import { Server } from 'socket.io'
+import type { Server as ServerType } from 'http'
 
-export async function setupWebSocketServer(server: Server) {
+export async function setupWebSocketServer(server: ServerType) {
   const PORT = process.env.WEBSOCKET_PORT || 5001
 
   //Start the backend server socket
-  const backendSocket = new CreateServer(server, {
+  console.log(server)
+  const backendSocket = new Server(server, {
     cors: {
       origin: '*',
     },
