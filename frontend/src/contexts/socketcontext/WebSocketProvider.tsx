@@ -5,9 +5,14 @@ import { ExchangeRate, IWebSocketContext } from '../../types/Trade'
 
 const WebSocketContext = createContext<IWebSocketContext | null>(null)
 
+interface IWebSocketProvider {
+  children: React.ReactNode
+}
 // The context will connect to the websocket on backend
-export const WebSocketProvider = (props: any) => {
-  const socketUrl = `${window.location.origin}:${process.env.WEBSOCKET_PORT}`
+export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
+  const socketUrl = `${window.location.origin}:${
+    process.env.REACT_APP_WEBSOCKET_PORT || 5001
+  }`
   console.log(socketUrl)
   // The Exchange rate will use the USD as the base currency. They will be USD/BTC, USD/EUR. USD/JPY;
   const [ratesForUSD, setRatesForUSD] = useState<ExchangeRate[]>([
@@ -41,7 +46,7 @@ export const WebSocketProvider = (props: any) => {
 
   return (
     <WebSocketContext.Provider value={value}>
-      {props.children}
+      {children}
     </WebSocketContext.Provider>
   )
 }
