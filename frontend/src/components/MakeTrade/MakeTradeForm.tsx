@@ -8,14 +8,16 @@ import { Box, Button, Typography } from '@mui/material'
 import styled from 'styled-components'
 
 const exchangeOptions = ['BTC', 'EUR', 'JPY']
+const develompment_URL = process.env.REACT_APP_BASE_URL || ''
 
-export const BuyUSDForm = (props: any) => {
+interface ITradeForm {
+  entrySymbol: string
+}
+
+export const MakeTradeForm = ({ entrySymbol }: ITradeForm) => {
   // Contexts
   const token = useContext(AuthContext)?.token
   const updateUser = useContext(AuthContext)?.updateUser
-
-  // Props
-  const entrySymbol = props.entrySymbol
 
   // Hooks
   const webSocketRate = useExchangeRates()
@@ -74,7 +76,7 @@ export const BuyUSDForm = (props: any) => {
 
     setIsInvalid(false)
 
-    fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/trades`, {
+    fetch(`${develompment_URL}/api/v1/trades`, {
       method: 'post',
       headers: {
         Authorization: `Bearer ${token}`,
