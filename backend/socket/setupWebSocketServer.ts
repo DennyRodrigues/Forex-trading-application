@@ -19,20 +19,6 @@ export async function setupWebSocketServer(server: ServerType) {
 
   server.listen(PORT, callback)
 
-  io.on('connection', () => {
-    console.log('a user is connected')
-  })
-  io.on('error', (e: NodeJS.ErrnoException) => {
-    console.error(e)
-  })
-
-  server.on('error', (e: NodeJS.ErrnoException) => {
-    if (e.code === 'EADDRINUSE') {
-      console.log('Address in use, retrying...')
-      server.close()
-      throw e
-    }
-  })
   // Start external API socket
   const connectExternalAPI = () => {
     const tradeSocket = new ws(
