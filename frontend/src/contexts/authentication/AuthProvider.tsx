@@ -6,6 +6,7 @@ import { ServerResponseLogin, User } from '../../types/User'
 interface Props {
   children: React.ReactNode
 }
+const development_URL = process.env.REACT_APP_BASE_URL || ''
 
 export const AuthProvider = ({ children }: Props) => {
   const [token, setToken] = useState('')
@@ -23,7 +24,7 @@ export const AuthProvider = ({ children }: Props) => {
   }
 
   const updateUser = () => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/me`, {
+    fetch(`${development_URL}/api/v1/users/me`, {
       method: 'get',
       headers: {
         Authorization: `Bearer ${token}`,
