@@ -26,7 +26,15 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
       io
     )
 
+    io.on('connect', () => {
+      console.log('Connectado')
+    })
+    io.on('error', (e) => {
+      console.log(e)
+    })
+
     io.on('message', (data) => {
+      console.log(data)
       if (data) {
         setRatesForUSD((prev) => {
           return prev.map((rate) => {

@@ -38,8 +38,9 @@ export async function setupWebSocketServer(server: ServerType) {
 
     // Listen for messages and emit it using the backedSocket
     tradeSocket.on('message', (data: any) => {
-      console.log(data)
-      io.emit('message', parseData(data))
+      const parsedData = parseData(data)
+      console.log(parsedData)
+      io.emit('message', parsedData)
     })
   }
   connectExternalAPI()
