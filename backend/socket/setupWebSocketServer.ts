@@ -24,7 +24,6 @@ export async function setupWebSocketServer(server: ServerType) {
     const tradeSocket = new ws(
       `wss://ws.twelvedata.com/v1/quotes/price?apikey=${process.env.API_KEY}`
     )
-
     // Subscribe message to start getting values
     const subscribe = {
       action: 'subscribe',
@@ -39,6 +38,7 @@ export async function setupWebSocketServer(server: ServerType) {
 
     // Listen for messages and emit it using the backedSocket
     tradeSocket.on('message', (data: any) => {
+      console.log(data)
       io.emit('message', parseData(data))
     })
   }
