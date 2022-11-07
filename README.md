@@ -9,11 +9,11 @@ There are two folders, frontend and backend.
 
 You will need to create a .env on the root folder with the following variables:
 
-PORT={PORT}
-API_KEY=YOUR_API_KEY
-MONGO_URL=YOUR_MONGO_URL
-JWT_SECRET=YOUR_JWT_SECRET
-WEBSOCKET_PORT=WEBSOCKET_PORT
+PORT={PORT}  
+API_KEY=YOUR_API_KEY  
+MONGO_URL=YOUR_MONGO_URL  
+JWT_SECRET=YOUR_JWT_SECRET  
+WEBSOCKET_PORT=WEBSOCKET_PORT  
 REACT_APP_SOCKET_URL={SOCKET_URL} ex 'http://localhost:{WEBSOCKET_PORT}'
 
 Next your will need to run the following commands on the root folder:
