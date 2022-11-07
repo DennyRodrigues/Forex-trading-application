@@ -44,7 +44,6 @@ export function setupWebSocketServer(server: ServerHttp) {
       })
     }
     connectExternalAPI()
-    console.log('wsServer server:', wsServer)
   } catch (error) {
     console.error(error)
   }

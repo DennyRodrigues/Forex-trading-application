@@ -19,6 +19,7 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
   ])
 
   useEffect(() => {
+    console.log('socket url: ', development_socket_url)
     const socket = io(development_socket_url)
     console.log(
       '🚀 ~ file: WebSocketProvider.tsx ~ line 23 ~ useEffect ~ socket',
