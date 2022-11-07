@@ -7,7 +7,7 @@ Forex trading application to make mock trades. You can trade JPY(Japanese yen) f
 First, it's necessary to use or create your account on https://twelvedata.com/account, and get your own api key
 There are two folders, frontend and backend.
 
-Second, you must start one socket api server to connect with the twelvedata API, you can use this repo: https://github.com/Unidade/forex-trading-socket-api, clone locally and follow the README.md
+Second, you must start one websocket server to connect with the twelvedata API, you can use this repo: https://github.com/Unidade/forex-trading-socket-api, clone locally and follow the README.md
 
 Next you will need to create a .env on the root folder with the following variables:
 
@@ -37,4 +37,4 @@ npm start
 - MongoDB
 
 Live version:
-[https://forex-trading-mock-app.herokuapp.com/](https://forex-trading-application.onrender.com/)
+[https://forex-trading-application.onrender.com/](https://forex-trading-application.onrender.com/)
