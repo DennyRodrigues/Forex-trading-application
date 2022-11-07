@@ -7,6 +7,7 @@ import type { Server as ServerHttp } from 'http'
  * Setup a websocket on an already existed httpServer
  * @param server
  */
+const wsPORT = process.env.WEBSOCKET_PORT || 5001
 export async function setupWebSocketServer(server: ServerHttp) {
   //Start the backend server socket
 
@@ -15,8 +16,11 @@ export async function setupWebSocketServer(server: ServerHttp) {
       origin: '*',
     },
   })
+  server.listen(wsPORT, () =>
+    console.log('Websocket server running on port: ', wsPORT)
+  )
 
-  console.log('wsServer server:', wsServer, '\nserver: ', server)
+  console.log('wsServer server:', wsServer, '\n http server: ', server)
 
   // Start external API socket
   const connectExternalAPI = () => {

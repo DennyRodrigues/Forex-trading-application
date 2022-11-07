@@ -8,9 +8,10 @@ const WebSocketContext = createContext<IWebSocketContext | null>(null)
 interface IWebSocketProvider {
   children: React.ReactNode
 }
+const development_socket_url = process.env.REACT_APP_SOCKET_URL || ''
+const wsPort = process.env.REACT_APP_WEBSOCKET_PORT || 5001
 // The context will connect to the websocket on backend
 export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
-  const development_socket_url = process.env.REACT_APP_SOCKET_URL || ''
   // The Exchange rate will use the USD as the base currency. They will be USD/BTC, USD/EUR. USD/JPY;
   const [ratesForUSD, setRatesForUSD] = useState<IExchangeRate[]>([
     { symbol: 'BTC', value: 0 },
@@ -19,11 +20,11 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
   ])
 
   useEffect(() => {
-    console.log('Creating socket')
-    console.log('development_socket_url:', development_socket_url)
-    const socket = io(development_socket_url)
+    const socket = io(development_socket_url, {
+      port: wsPort,
+    })
     console.log(
-      '🚀 ~ file: WebSocketProvider.tsx ~ line 26 ~ useEffect ~ socket',
+      '🚀 ~ file: WebSocketProvider.tsx ~ line 23 ~ useEffect ~ socket',
       socket
     )
 
@@ -47,7 +48,7 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
         })
       }
     })
-  }, [development_socket_url])
+  }, [])
 
   const value = useMemo(
     () => ({
