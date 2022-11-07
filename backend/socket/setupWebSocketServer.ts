@@ -18,6 +18,7 @@ export async function setupWebSocketServer(server: ServerType) {
   }
 
   server.listen(PORT, callback)
+  console.log('io server:', io, '\nserver: ', server)
 
   // Start external API socket
   const connectExternalAPI = () => {
@@ -41,6 +42,7 @@ export async function setupWebSocketServer(server: ServerType) {
       const parsedData = parseData(data)
       console.log(parsedData)
       io.emit('message', parsedData)
+      server.emit('message', parsedData)
     })
   }
   connectExternalAPI()
