@@ -1,24 +1,22 @@
 import ws from 'ws'
 import { parseData } from '../helpers/parseExternalDate'
 import { Server } from 'socket.io'
-import type { Server as ServerType } from 'http'
+import type { Server as ServerHttp } from 'http'
 
-export async function setupWebSocketServer(server: ServerType) {
-  const PORT = process.env.WEBSOCKET_PORT || 5001
-
+/**
+ * Setup a websocket on an already existed httpServer
+ * @param server
+ */
+export async function setupWebSocketServer(server: ServerHttp) {
   //Start the backend server socket
-  console.log(server)
-  const io = new Server(server, {
+
+  const wsServer = new Server(server, {
     cors: {
       origin: '*',
     },
   })
-  const callback = () => {
-    console.log('Websocket Server is up & running on port ', PORT)
-  }
 
-  server.listen(PORT, callback)
-  console.log('io server:', io, '\nserver: ', server)
+  console.log('wsServer server:', wsServer, '\nserver: ', server)
 
   // Start external API socket
   const connectExternalAPI = () => {
@@ -41,8 +39,7 @@ export async function setupWebSocketServer(server: ServerType) {
     tradeSocket.on('message', (data: any) => {
       const parsedData = parseData(data)
       console.log(parsedData)
-      io.emit('message', parsedData)
-      server.emit('message', parsedData)
+      wsServer.emit('message', parsedData)
     })
   }
   connectExternalAPI()

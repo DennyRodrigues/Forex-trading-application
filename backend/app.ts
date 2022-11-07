@@ -27,6 +27,6 @@ app.get('*', (req, res) => {
     path.join(__dirname, '..', '..', 'frontend', 'build', 'index.html')
   )
 })
-// Middlewares
+
 // Handle error
 app.use(errorMiddleware)
