@@ -7,44 +7,42 @@ import type { Server as ServerHttp } from 'http'
  * Setup a websocket on an already existed httpServer
  * @param server
  */
-const wsPORT = process.env.WEBSOCKET_PORT || 5001
-export async function setupWebSocketServer(server: ServerHttp) {
-  //Start the backend server socket
 
+export function setupWebSocketServer(server: ServerHttp) {
+  //Start the backend server socket
   const wsServer = new Server(server, {
     cors: {
       origin: '*',
     },
   })
-  server.listen(wsPORT, () =>
-    console.log('Websocket server running on port: ', wsPORT)
-  )
+  console.log('wsServer server:', wsServer)
+  try {
+    // Start external API socket
+    const connectExternalAPI = () => {
+      const tradeSocket = new ws(
+        `wss://ws.twelvedata.com/v1/quotes/price?apikey=${process.env.API_KEY}`
+      )
+      // Subscribe message to start getting values
+      const subscribe = {
+        action: 'subscribe',
+        params: {
+          symbols: 'EUR/USD,USD/JPY,BTC/USD',
+        },
+      }
+      // Connection opened
+      tradeSocket.on('open', () => {
+        tradeSocket.send(JSON.stringify(subscribe))
+      })
 
-  console.log('wsServer server:', wsServer, '\n http server: ', server)
-
-  // Start external API socket
-  const connectExternalAPI = () => {
-    const tradeSocket = new ws(
-      `wss://ws.twelvedata.com/v1/quotes/price?apikey=${process.env.API_KEY}`
-    )
-    // Subscribe message to start getting values
-    const subscribe = {
-      action: 'subscribe',
-      params: {
-        symbols: 'EUR/USD,USD/JPY,BTC/USD',
-      },
+      // Listen for messages and emit it using the backedSocket
+      tradeSocket.on('message', (data: any) => {
+        const parsedData = parseData(data)
+        console.log(parsedData)
+        wsServer.emit('message', parsedData)
+      })
     }
-    // Connection opened
-    tradeSocket.on('open', () => {
-      tradeSocket.send(JSON.stringify(subscribe))
-    })
-
-    // Listen for messages and emit it using the backedSocket
-    tradeSocket.on('message', (data: any) => {
-      const parsedData = parseData(data)
-      console.log(parsedData)
-      wsServer.emit('message', parsedData)
-    })
+    connectExternalAPI()
+  } catch (error) {
+    console.error(error)
   }
-  connectExternalAPI()
 }

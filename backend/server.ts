@@ -1,6 +1,6 @@
 import { config } from 'dotenv'
-import { createServer } from 'http'
 config()
+import { createServer } from 'http'
 import { app } from './app'
 import { connectDB } from './database/connectDB'
 import { setupWebSocketServer } from './socket/setupWebSocketServer'
@@ -10,9 +10,6 @@ const server = createServer(app)
 
 // Initialize the startup routine
 connectDB().then(() => {
-  app.listen(port, () => {
-    setupWebSocketServer(server).catch((e) => {
-      console.error(e)
-    })
-  })
+  setupWebSocketServer(server)
+  app.listen(port, () => console.log('Server is up and running on port:', port))
 })
