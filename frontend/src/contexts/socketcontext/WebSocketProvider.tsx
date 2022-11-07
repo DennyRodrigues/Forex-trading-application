@@ -4,13 +4,13 @@ import { IExchangeRate, IWebSocketContext } from '../../types/trade'
 import CreateIO from 'socket.io-client'
 
 const WebSocketContext = createContext<IWebSocketContext | null>(null)
-const development_socket_url = process.env.REACT_APP_SOCKET_URL || ''
 
 interface IWebSocketProvider {
   children: React.ReactNode
 }
 // The context will connect to the websocket on backend
 export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
+  const development_socket_url = process.env.REACT_APP_SOCKET_URL || ''
   // The Exchange rate will use the USD as the base currency. They will be USD/BTC, USD/EUR. USD/JPY;
   const [ratesForUSD, setRatesForUSD] = useState<IExchangeRate[]>([
     { symbol: 'BTC', value: 0 },
@@ -20,6 +20,7 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
 
   useEffect(() => {
     console.log('Creating socket')
+    console.log('development_socket_url:', development_socket_url)
     const io = CreateIO(development_socket_url)
     console.log(
       '🚀 ~ file: WebSocketProvider.tsx ~ line 26 ~ useEffect ~ io',
@@ -46,7 +47,7 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
         })
       }
     })
-  }, [])
+  }, [development_socket_url])
 
   const value = useMemo(
     () => ({
