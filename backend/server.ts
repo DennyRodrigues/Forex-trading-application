@@ -12,4 +12,5 @@ const server = createServer(app)
 connectDB().then(() => {
   setupWebSocketServer(server)
   app.listen(port, () => console.log('Server is up and running on port:', port))
+  console.log(app)
 })
