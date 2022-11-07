@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useContext } from 'react'
 import { createContext } from 'react'
 import { IExchangeRate, IWebSocketContext } from '../../types/trade'
-import CreateIO from 'socket.io-client'
+import io from 'socket.io-client'
 
 const WebSocketContext = createContext<IWebSocketContext | null>(null)
 
@@ -21,20 +21,20 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
   useEffect(() => {
     console.log('Creating socket')
     console.log('development_socket_url:', development_socket_url)
-    const io = CreateIO(development_socket_url)
+    const socket = io(development_socket_url)
     console.log(
-      '🚀 ~ file: WebSocketProvider.tsx ~ line 26 ~ useEffect ~ io',
-      io
+      '🚀 ~ file: WebSocketProvider.tsx ~ line 26 ~ useEffect ~ socket',
+      socket
     )
 
-    io.on('connect', () => {
+    socket.on('connect', () => {
       console.log('Connectado')
     })
-    io.on('error', (e) => {
+    socket.on('error', (e) => {
       console.log(e)
     })
 
-    io.on('message', (data) => {
+    socket.on('message', (data) => {
       console.log(data)
       if (data) {
         setRatesForUSD((prev) => {
