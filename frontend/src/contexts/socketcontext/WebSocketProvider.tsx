@@ -9,7 +9,6 @@ interface IWebSocketProvider {
   children: React.ReactNode
 }
 const development_socket_url = process.env.REACT_APP_SOCKET_URL || ''
-const wsPort = process.env.REACT_APP_WEBSOCKET_PORT || 5000
 // The context will connect to the websocket on backend
 export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
   // The Exchange rate will use the USD as the base currency. They will be USD/BTC, USD/EUR. USD/JPY;
@@ -20,9 +19,7 @@ export const WebSocketProvider = ({ children }: IWebSocketProvider) => {
   ])
 
   useEffect(() => {
-    const socket = io(development_socket_url, {
-      port: wsPort,
-    })
+    const socket = io(development_socket_url)
     console.log(
       '🚀 ~ file: WebSocketProvider.tsx ~ line 23 ~ useEffect ~ socket',
       socket

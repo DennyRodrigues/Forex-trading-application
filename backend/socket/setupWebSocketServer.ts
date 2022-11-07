@@ -15,7 +15,9 @@ export function setupWebSocketServer(server: ServerHttp) {
       origin: '*',
     },
   })
-  console.log('wsServer server:', wsServer)
+  wsServer.on('connection', () => {
+    console.log('Client connected')
+  })
   try {
     // Start external API socket
     const connectExternalAPI = () => {
@@ -42,6 +44,7 @@ export function setupWebSocketServer(server: ServerHttp) {
       })
     }
     connectExternalAPI()
+    console.log('wsServer server:', wsServer)
   } catch (error) {
     console.error(error)
   }
