@@ -1,18 +1,17 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
-
-interface value {
-  user: null | {
-    name: string | null;
+export interface AuthContextInterface {
+  user: {
+    name: string
     wallet: {
-      JPY: number,
+      JPY: number
       USD: number
-    } | null;
-  },
-  token: string | null;
-  updateUser: Function;
-  onLogin: Function;
-  onLogout: Function;
-};
+    }
+  } | null
+  token: string
+  updateUser: Function
+  onLogin: Function
+  onLogout: Function
+}
 
-export const AuthContext = createContext<value | null>(null);
+export const AuthContext = createContext<AuthContextInterface | null>(null)

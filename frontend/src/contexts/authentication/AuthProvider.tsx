@@ -1,47 +1,48 @@
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "./AuthContext";
-import { useState } from "react";
-import { User, UserContext } from "../../types/User";
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from './AuthContext'
+import { useState } from 'react'
+import { ServerResponseLogin, User } from '../../types/User'
 
-export const AuthProvider = (props: any) => {
-  const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<UserContext | null>(
-    null
-  );
-  const navigate = useNavigate();
+interface Props {
+  children: React.ReactNode
+}
+const development_URL = process.env.REACT_APP_BASE_URL || ''
 
-  const handleLogin = (response: User) => {
-    setToken(response.token);
-    setUser({ name: response.name, wallet: response.wallet });
-    navigate("/", { replace: true });
-  };
+export const AuthProvider = ({ children }: Props) => {
+  const [token, setToken] = useState('')
+  const [user, setUser] = useState<User | null>(null)
+  const navigate = useNavigate()
+
+  const handleLogin = (response: ServerResponseLogin) => {
+    setToken(response.token)
+    setUser({ name: response.name, wallet: response.wallet })
+    navigate('/', { replace: true })
+  }
 
   const handleLogout = () => {
-    setToken("");
-  };
+    setToken('')
+  }
 
   const updateUser = () => {
-    fetch(`${process.env.REACT_APP_BASE_URL}/api/v1/users/me`, {
-      method: "get",
+    fetch(`${development_URL}/api/v1/users/me`, {
+      method: 'get',
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((res: Response) => res.json())
       .then((res: any) => {
-        setUser({ name: res.result.name, wallet: res.result.wallet });
+        setUser({ name: res.result.name, wallet: res.result.wallet })
       })
-      .catch((e: Error) => console.log(e));
-  };
+      .catch((e: Error) => console.log(e))
+  }
 
   const value = {
-    user: user,
-    token: token,
-    updateUser: updateUser,
+    user,
+    token,
+    updateUser,
     onLogin: handleLogin,
     onLogout: handleLogout,
-  };
-  return (
-    <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
-  );
-};
+  }
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}

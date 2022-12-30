@@ -1,62 +1,45 @@
-* {
-  font-size: 1.8rem;
-}
-
-html {
-  /* This defines what 1rem is */
-   font-size: 100%
-   /* 1 rem = 16px */
-}
-button{
+button {
   font-size: 20px;
 }
 body {
-  
-
   color: #333;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Work Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.link {
+  text-decoration: none;
+  color: rgb(0, 119, 255);
 }
 
-@media (max-width: 1000px){
-    html {
-  /* This defines what 1rem is */
-   font-size: 90%
-   /* 1 rem = 16px */
+.link:hover {
+  color: rgb(73, 73, 233);
+  transition: all 0.25s;
+}
 
+.nav-link:link,
+.nav-link:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: rgba(157, 204, 223, 0.637);
+}
+
+.wrapper {
+  width: 320px;
+}
+
+@media screen and (min-width: 500px) {
+  .wrapper {
+    width: 460px;
   }
 }
 
-@media (max-width: 768px){
-    html {
-  /* This defines what 1rem is */
-   font-size: 75%
-   /* 1 rem = 16px */
-
-  }
-}
-@media (max-width: 500px){
-    html {
-  /* This defines what 1rem is */
-   font-size: 65%
-   /* 1 rem = 16px */
-
-  }
-}
-
-@media (max-width: 400px){
-    html {
-  /* This defines what 1rem is */
-   font-size: 60%
-   /* 1 rem = 16px */
-
+@media screen and (min-width: 800px) {
+  .wrapper {
+    width: 640px;
   }
 }
